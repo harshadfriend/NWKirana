@@ -10,6 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
+        <activity
+            android:name=".AddCustomer"
+            android:label="Add New Customer" />
+        <activity
+            android:name=".NewPledge"
+            android:label="New Pledge" />
+        <activity
+            android:name=".CustomerDetails"
+            android:label="Customer Details" />
+        <activity
+            android:name=".NewTransaction"
+            android:label="New Transaction" />
+        <activity
+            android:name=".PledgeDetails"
+            android:label="Pledge Details" />
+        <activity android:name=".MonthCalculate" />
+        <activity
+            android:name=".DeleteUser"
+            android:label="Delete User" />
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,10 +36,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddCustomer" />
-        <activity android:name=".CustList" />
-        <activity android:name=".ProductList" />
-        <activity android:name=".AddProduct"></activity>
+        <activity
+            android:name=".PledgeReport"
+            android:label="Pledge Report" />
+        <activity android:name=".TransactionReport"
+            android:label="Transaction Report"/>
+        <activity android:name=".EditUser"
+            android:label="Edit User"/>
+        <activity android:name=".EditUserDialog"
+            android:label="Edit"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
     </application>
 
 </manifest>
