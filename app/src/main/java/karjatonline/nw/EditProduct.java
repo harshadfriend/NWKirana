@@ -47,7 +47,7 @@ public class EditProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_cust);
+        setContentView(R.layout.activity_edit_product);
 
         lvProductListDU=findViewById(R.id.lvProductListDU);
 

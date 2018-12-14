@@ -32,7 +32,7 @@ public class EditProductDialog extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_cust_dialog);
+        setContentView(R.layout.activity_edit_product_dialog);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
 
@@ -86,7 +86,7 @@ public class EditProductDialog extends AppCompatActivity {
                     taskMap.put("pname", etEUDname.getText().toString().toUpperCase());
                     taskMap.put("prate", etEUDrate.getText().toString());
 //                    taskMap.put("mobile", etEUDphone.getText().toString());
-                    firebase.child("cust").child(custkey).updateChildren(taskMap);
+                    firebase.child("product").child(custkey).updateChildren(taskMap);
 
                 }
                 Toast.makeText(EditProductDialog.this, "Success", Toast.LENGTH_SHORT).show();
