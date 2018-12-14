@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home">
 
-  <!--  <LinearLayout
+    <LinearLayout
         android:background="@drawable/border2"
         android:orientation="vertical"
         android:padding="1dp"
@@ -71,12 +70,12 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btnPnT"
+                android:id="@+id/btnCustomer"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/notepad"
                 android:textColor="#2bbafc"
-                android:text="Pledges"
+                android:text="Orders"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -86,7 +85,7 @@
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="10dp" />
-    <LinearLayout
+  <!--  <LinearLayout
         android:background="@drawable/border"
         android:orientation="vertical"
         android:padding="1dp"
@@ -186,6 +185,7 @@
 
     </LinearLayout>
     -->
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -196,18 +196,8 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btnCustomer"
-            android:text="Customers"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btnAddCustomer"
-            android:text="+ Customer"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+
+
     </LinearLayout>
     <Button
         android:id="@+id/btnAddProcuct"

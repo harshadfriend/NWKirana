@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity {
-    Button btnCustomers,btnAddProduct,btnAddCustomer,btnProducts;
+    Button btnCustomers,btnAddProduct,btnAddCustomer,btnProducts,btnEditCust;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +16,9 @@ public class Home extends AppCompatActivity {
 
         btnCustomers=findViewById(R.id.btnCustomer);
         btnProducts=findViewById(R.id.btnProducts);
-        btnAddCustomer=findViewById(R.id.btnAddCustomer);
+        btnAddCustomer=findViewById(R.id.btnAddcust);
         btnAddProduct=findViewById(R.id.btnAddProcuct);
+        btnEditCust=findViewById(R.id.btnEditCust);
 
         btnAddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,12 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Home.this,AddProduct.class));
+            }
+        });
+        btnEditCust.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this,Edit.class));
             }
         });
     }

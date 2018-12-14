@@ -20,7 +20,9 @@
         <activity android:name=".AddCustomer" />
         <activity android:name=".CustList" />
         <activity android:name=".ProductList" />
-        <activity android:name=".AddProduct"></activity>
+        <activity android:name=".AddProduct" />
+        <activity android:name=".EditCust" />
+        <activity android:name=".Edit"></activity>
     </application>
 
 </manifest>
