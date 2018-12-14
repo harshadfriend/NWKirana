@@ -21,8 +21,10 @@
         <activity android:name=".CustList" />
         <activity android:name=".ProductList" />
         <activity android:name=".AddProduct" />
-        <activity android:name=".EditCust" />
-        <activity android:name=".Edit"></activity>
+        <activity android:name=".EditCustDialog" />
+        <activity android:name=".EditCust"/>
+        <activity android:name=".EditProductDialog" />
+        <activity android:name=".EditProduct"/>
     </application>
 
 </manifest>

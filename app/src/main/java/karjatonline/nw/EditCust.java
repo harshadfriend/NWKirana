@@ -1,12 +1,22 @@
 package karjatonline.nw;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -16,198 +26,178 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class EditCust extends AppCompatActivity {
-    EditText etEUDname,etEUDadd,etEUDphone;
-    Button btnEUDsave;
-    String custkey;
-
-    Firebase firebase;
 
     String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String[] str=new String[10];
+    String a,b,c;
+    AutoCompleteTextView actvDU;
+    ArrayAdapter<String> adpDU,ladpDU;
+    ArrayList<String> keyArrayList=new ArrayList<String>();
+    Firebase firebase;
     DatabaseReference dbRef;
+    String actvDUkey,strName;
+
+
+    LinearLayout ll;
+    ListView lvCustListDU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cust);
 
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        lvCustListDU=findViewById(R.id.lvCustListDU);
+
+     //   ll=(LinearLayout)findViewById(R.id.ll);
+
+        actvDU=findViewById(R.id.actvDU);
+        adpDU=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+//        for(int j=0;j<10;j++)
+//            Log.d("logg",""+str[j]);
+        adpDU.setNotifyOnChange(true);
+        actvDU.setAdapter(adpDU);
+
+        //apply style to basic listview items
+        ladpDU=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1){
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view =super.getView(position, convertView, parent);
+
+                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+
+                /*YOUR CHOICE OF COLOR*/
+                textView.setTextColor(Color.WHITE);
+                textView.setTypeface(null, Typeface.BOLD);
+
+                return view;
+            }
+        };
+        ladpDU.setNotifyOnChange(true);
+        lvCustListDU.setAdapter(ladpDU);
+
+
 
         Firebase.setAndroidContext(this);
-        firebase = new Firebase(dburl);
 
-        Bundle extras=getIntent().getExtras();
-        custkey=extras.getString("custkey");
+        firebase=new Firebase(dburl);
 
-        Log.d("eud",""+custkey);
+        dbRef = FirebaseDatabase.getInstance().getReference();
+        //Query query=dbRef.child("person").orderByChild("name").equalTo(etSearch.getText().toString());
+//        Query query = dbRef.child("siot").orderByChild("name").equalTo("seema");
+        Query query = dbRef.child("cust");  //query to get cust key
+        query.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+            int i=0;
 
-        // Toast.makeText(this, "eud "+custkey, Toast.LENGTH_SHORT).show();
-
-        etEUDname=findViewById(R.id.etEUDname);
-        etEUDadd=findViewById(R.id.etEUDadd);
-        etEUDphone=findViewById(R.id.etEUDphone);
-
-        btnEUDsave=findViewById(R.id.btnEUDsave);
-
-        Query q=dbRef.child("cust").child(custkey);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot data:dataSnapshot.getChildren()){
-                fbase f=dataSnapshot.getValue(fbase.class);   //no need of looping when u directly get the child
-                etEUDname.setText(f.getName());
-                etEUDadd.setText(f.getcity());
-                etEUDphone.setText(f.getmobile());
-//                }
+            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                keyArrayList.clear();i=0;
+                adpDU.clear();
+                ladpDU.clear();
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    fbase pson = data.getValue(fbase.class);
+                    //Toast.makeText(busGrid.this, "Name: " + pson.getName() + "Address: " + pson.getAddress(), Toast.LENGTH_SHORT).show();
+
+
+//                   Toast.makeText(getApplicationContext(),""+pson.getadd()+ " "+i, Toast.LENGTH_SHORT).show();  //show coordinates
+                    Log.d("logg",""+i);
+                    keyArrayList.add(data.getKey());
+                    a=pson.getName();
+                    adpDU.add(""+pson.getName());
+                    ladpDU.add(""+pson.getName());
+                    Log.d("logg","inside i "+data.getKey());
+                    i++;
+
+//                    a=pson.getadd();
+//                    if(i==1){ b=pson.getadd();Log.d("logg","inside i eqil 1"+b);}
+//                    if(i==2) c=pson.getadd();
+
+                }
+
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                //Toast.makeText(busGrid.this, "Error", Toast.LENGTH_SHORT).show();
 
             }
         });
 
+        actvDU.setFocusable(false);
+        actvDU.setOnTouchListener(new View.OnTouchListener() {
 
-//        Query pkey=dbRef.child("pledge").child(custkey).orderByChild("name").equals()
-        btnEUDsave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(etEUDname.getText().toString().isEmpty()) etEUDname.setError("Name cannot be empty");
-                if(etEUDadd.getText().toString().isEmpty()) etEUDadd.setError("City cannot be empty");
-                if(etEUDphone.getText().toString().isEmpty()) etEUDphone.setError("Phone cannot be empty");
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d("logd","ll");
+                actvDU.setFocusable(true);
+                // actv.setShowSoftInputOnFocus(true);
+                actvDU.setFocusableInTouchMode(true);
+                actvDU.setText("");
+                //startActivity(new Intent(getApplicationContext(),sample.class));
 
-                if(!etEUDname.getText().toString().isEmpty() && !etEUDadd.getText().toString().isEmpty() &&
-                        !etEUDphone.getText().toString().isEmpty()) {
+                return false;
+            }
 
-                    Map<String, Object> taskMap = new HashMap<String, Object>();
-                    taskMap.put("name", etEUDname.getText().toString().toUpperCase());
-                    taskMap.put("city", etEUDadd.getText().toString());
-                    taskMap.put("mobile", etEUDphone.getText().toString());
-                    firebase.child("cust").child(custkey).updateChildren(taskMap);
 
-                }
-                Toast.makeText(EditCust.this, "Success", Toast.LENGTH_SHORT).show();
-                onBackPressed();
-               // otherset(etEUDname.getText().toString().toUpperCase());
+        });
+//        Log.d("logg",""+a+b+c);
+        actvDU.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(MainActivity.this, ""+parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                Log.d("logg",""+parent.getItemAtPosition(position));
+                strName=parent.getItemAtPosition(position).toString();
+                Query q=dbRef.child("cust").orderByChild("name").equalTo(parent.getItemAtPosition(position).toString());
+                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot data:dataSnapshot.getChildren()){
+                            //Toast.makeText(DeleteUser.this, ""+data.getKey(), Toast.LENGTH_SHORT).show();
+                            actvDUkey=data.getKey();
+                        }
+                       // Toast.makeText(EditCust.this, "actvdukey"+actvDUkey, Toast.LENGTH_SHORT).show();
+                        Intent i=new Intent(EditCust.this,EditCustDialog.class);
+                        i.putExtra("custkey",actvDUkey);
+
+                        startActivity(i);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
+
+                // Toast.makeText(DeleteUser.this, ""+keyArrayList.get(position), Toast.LENGTH_SHORT).show();
+                /**/
             }
         });
 
+        lvCustListDU.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            int i=0;String strname;
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                i=position;
+                strname=parent.getItemAtPosition(position).toString();
+                //  Toast.makeText(EditUser.this, ""+ladpDU.getItem(position), Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(EditCust.this,EditCustDialog.class);
+                i.putExtra("custkey",keyArrayList.get(position));
+                startActivity(i);
+
+//                new Firebase("https://jewelleryshop-30ff9.firebaseio.com/").child("cust").child(keyArrayList.get(position)).setValue(null);
+//                new Firebase("https://jewelleryshop-30ff9.firebaseio.com/").child("pledge").child(keyArrayList.get(position)).setValue(null);
+//                new Firebase("https://jewelleryshop-30ff9.firebaseio.com/").child("amount").child(keyArrayList.get(position)).setValue(null);
+//                new Firebase("https://jewelleryshop-30ff9.firebaseio.com/").child("transactions").child(keyArrayList.get(position)).setValue(null);
+//                new Firebase("https://jewelleryshop-30ff9.firebaseio.com/").child("interest").child(keyArrayList.get(position)).setValue(null);
+            }
+        });
 
     }
-  /*  public void otherset(String s){
-        final String ss=s;
-
-//        updating amount name
-        Query aq=dbRef.child("amount").child(custkey).orderByChild("ckey").equalTo(custkey);
-        aq.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dt:dataSnapshot.getChildren()){
-                    fbase f=dt.getValue(fbase.class);
-                    Log.d("eud",""+f.getName()+" "+f.getprincamount());
-                    Map<String, Object> task = new HashMap<String, Object>();
-                    task.put("name", ss);
-                    firebase.child("amount").child(custkey).child(dt.getKey()).updateChildren(task);
-                }}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        //        updating pledge name
-        Query pq=dbRef.child("pledge").child(custkey).orderByChild("ckey").equalTo(custkey);
-        pq.addListenerForSingleValueEvent(new ValueEventListener() {
-            String pk;
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot data:dataSnapshot.getChildren()){
-                    fbase f=data.getValue(fbase.class);
-                    Log.d("eud",""+f.getName()+" "+f.getprincamount());
-                    Map<String, Object> taskMap = new HashMap<String, Object>();
-                    taskMap.put("name", ss);
-                    pk=data.getKey();
-                    oother(ss,pk);
-
-                    //
-
-                    //
-                    firebase.child("pledge").child(custkey).child(pk).updateChildren(taskMap);
-
-
-
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        //   Toast.makeText(EditUserDialog.this, "Success", Toast.LENGTH_SHORT).show();
-        //  onBackPressed();
-
-    }*/
-
-  /*  public void oother(String s,String p){
-        final String ss=s;
-        final String pk=p;
-        //        updating interest name
-        Query iq=dbRef.child("interest").child(custkey).child(pk).orderByChild("ckey").equalTo(custkey);
-
-
-        iq.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot de : dataSnapshot.getChildren()) {
-                    fbase f = de.getValue(fbase.class);
-                    Log.d("eud", "" + f.getName() + " " + f.getAmount());
-                    Map<String, Object> tMap = new HashMap<String, Object>();
-                    tMap.put("name", ss);
-                    String ik=de.getKey();
-                    Log.d("logpk interest",pk);
-                    firebase.child("interest").child(custkey).child(pk).child(ik).updateChildren(tMap);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        //        updating transactions name
-        Query tq=dbRef.child("transactions").child(custkey).child(pk).orderByChild("ckey").equalTo(custkey);
-
-
-        tq.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot d:dataSnapshot.getChildren()){
-                    fbase f=d.getValue(fbase.class);
-                    Log.d("eud",""+f.getName()+" "+f.getAmount());
-                    Map<String, Object> taskMap = new HashMap<String, Object>();
-                    taskMap.put("name", ss);
-                    Log.d("logpk trans",pk);
-                    firebase.child("transactions").child(custkey).child(pk).child(d.getKey()).updateChildren(taskMap);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }*/
 }

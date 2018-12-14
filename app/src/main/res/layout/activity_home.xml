@@ -46,19 +46,6 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:padding="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <Button
                 android:id="@+id/btnDeleteCust"
                 android:background="@android:color/transparent"
@@ -78,6 +65,20 @@
                 android:text="Orders"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
         </LinearLayout>
 
     </LinearLayout>
@@ -85,6 +86,134 @@
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="10dp" />
+
+    <LinearLayout
+        android:background="@drawable/border2"
+        android:orientation="vertical"
+        android:padding="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Products"
+            android:padding="3dp"
+            android:background="@drawable/titleback"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAddProduct"
+                android:textColor="#0a0"
+                android:background="@android:color/transparent"
+                android:text="Add"
+                android:drawableTop="@drawable/add"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnEditProduct"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/edithome"
+                android:text="Edit"
+                android:textColor="#00a"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnDeleteProduct"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/deletehome"
+                android:text="Delete"
+                android:textColor="#a00"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnProducts"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/notepad"
+                android:textColor="#2bbafc"
+                android:text="Products"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/border2"
+        android:orientation="vertical"
+        android:padding="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Stock"
+            android:padding="3dp"
+            android:background="@drawable/titleback"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAddS"
+                android:textColor="#0a0"
+                android:background="@android:color/transparent"
+                android:text="Add"
+                android:drawableTop="@drawable/add"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnEditS"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/edithome"
+                android:text="Edit"
+                android:textColor="#00a"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+
+
+    </LinearLayout>
   <!--  <LinearLayout
         android:background="@drawable/border"
         android:orientation="vertical"
@@ -186,23 +315,7 @@
     </LinearLayout>
     -->
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnProducts"
-            android:text="Products"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
 
 
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnAddProcuct"
-        android:text="+ Product"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

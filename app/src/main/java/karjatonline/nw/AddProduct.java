@@ -44,10 +44,10 @@ public class AddProduct extends AppCompatActivity {
                     fb.setPname(etPname.getText().toString().toUpperCase());
                     fb.setPrate(etPrate.getText().toString());
 
-                    fb2.setPname(etPname.getText().toString());
+                    fb2.setPquantity(etPquantity.getText().toString());
                     Log.d("logg", "inside if");
                     firebase.child("product").push().setValue(fb);
-//                    firebase.child("pledge").child(etPname.getText().toString());
+                    firebase.child("stock").child(etPname.getText().toString()).setValue(fb2);
 //                    firebase.child("transactions").child(etPname.getText().toString());
 
 

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity {
-    Button btnCustomers,btnAddProduct,btnAddCustomer,btnProducts,btnEditCust;
+    Button btnCustomers,btnAddProduct,btnAddCustomer,btnProducts,btnEditCust,btnEditProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +17,9 @@ public class Home extends AppCompatActivity {
         btnCustomers=findViewById(R.id.btnCustomer);
         btnProducts=findViewById(R.id.btnProducts);
         btnAddCustomer=findViewById(R.id.btnAddcust);
-        btnAddProduct=findViewById(R.id.btnAddProcuct);
+        btnAddProduct=findViewById(R.id.btnAddProduct);
         btnEditCust=findViewById(R.id.btnEditCust);
+        btnEditProduct=findViewById(R.id.btnEditProduct);
 
         btnAddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +42,19 @@ public class Home extends AppCompatActivity {
         btnEditCust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this,Edit.class));
+                startActivity(new Intent(Home.this,EditCust.class));
+            }
+        });
+        btnEditProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this,EditProduct.class));
+            }
+        });
+        btnProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this,ProductList.class));
             }
         });
     }

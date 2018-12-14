@@ -3,10 +3,10 @@ package karjatonline.nw;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +17,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Edit extends AppCompatActivity {
+public class EditProduct extends AppCompatActivity {
 
     String dburl="https://nwkirana-3eb2e.firebaseio.com/";
     String[] str=new String[10];
@@ -43,14 +42,14 @@ public class Edit extends AppCompatActivity {
 
 
     LinearLayout ll;
-    ListView lvCustListDU;
+    ListView lvProductListDU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_edit_cust);
 
-        lvCustListDU=findViewById(R.id.lvCustListDU);
+        lvProductListDU=findViewById(R.id.lvProductListDU);
 
      //   ll=(LinearLayout)findViewById(R.id.ll);
 
@@ -78,7 +77,7 @@ public class Edit extends AppCompatActivity {
             }
         };
         ladpDU.setNotifyOnChange(true);
-        lvCustListDU.setAdapter(ladpDU);
+        lvProductListDU.setAdapter(ladpDU);
 
 
 
@@ -89,12 +88,12 @@ public class Edit extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference();
         //Query query=dbRef.child("person").orderByChild("name").equalTo(etSearch.getText().toString());
 //        Query query = dbRef.child("siot").orderByChild("name").equalTo("seema");
-        Query query = dbRef.child("cust");  //query to get cust key
-        query.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+        Query query = dbRef.child("product");  //query to get cust key
+        query.addValueEventListener(new ValueEventListener() {
             int i=0;
 
             @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 keyArrayList.clear();i=0;
                 adpDU.clear();
                 ladpDU.clear();
@@ -106,9 +105,9 @@ public class Edit extends AppCompatActivity {
 //                   Toast.makeText(getApplicationContext(),""+pson.getadd()+ " "+i, Toast.LENGTH_SHORT).show();  //show coordinates
                     Log.d("logg",""+i);
                     keyArrayList.add(data.getKey());
-                    a=pson.getName();
-                    adpDU.add(""+pson.getName());
-                    ladpDU.add(""+pson.getName());
+                    a=pson.getPname();
+                    adpDU.add(""+pson.getPname());
+                    ladpDU.add(""+pson.getPname());
                     Log.d("logg","inside i "+data.getKey());
                     i++;
 
@@ -153,7 +152,7 @@ public class Edit extends AppCompatActivity {
                 //Toast.makeText(MainActivity.this, ""+parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
                 Log.d("logg",""+parent.getItemAtPosition(position));
                 strName=parent.getItemAtPosition(position).toString();
-                Query q=dbRef.child("cust").orderByChild("name").equalTo(parent.getItemAtPosition(position).toString());
+                Query q=dbRef.child("product").orderByChild("pname").equalTo(parent.getItemAtPosition(position).toString());
                 q.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -161,8 +160,8 @@ public class Edit extends AppCompatActivity {
                             //Toast.makeText(DeleteUser.this, ""+data.getKey(), Toast.LENGTH_SHORT).show();
                             actvDUkey=data.getKey();
                         }
-                       // Toast.makeText(Edit.this, "actvdukey"+actvDUkey, Toast.LENGTH_SHORT).show();
-                        Intent i=new Intent(Edit.this,EditCust.class);
+                       // Toast.makeText(EditCust.this, "actvdukey"+actvDUkey, Toast.LENGTH_SHORT).show();
+                        Intent i=new Intent(EditProduct.this,EditProductDialog.class);
                         i.putExtra("custkey",actvDUkey);
 
                         startActivity(i);
@@ -181,14 +180,14 @@ public class Edit extends AppCompatActivity {
             }
         });
 
-        lvCustListDU.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvProductListDU.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             int i=0;String strname;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 i=position;
                 strname=parent.getItemAtPosition(position).toString();
                 //  Toast.makeText(EditUser.this, ""+ladpDU.getItem(position), Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(Edit.this,EditCust.class);
+                Intent i=new Intent(EditProduct.this,EditProductDialog.class);
                 i.putExtra("custkey",keyArrayList.get(position));
                 startActivity(i);
 

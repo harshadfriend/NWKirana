@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Edit">
+    tools:context=".EditProduct">
     <LinearLayout
         android:id="@+id/llDU"
         android:orientation="vertical"
@@ -19,7 +19,7 @@
             />
 
         <ListView
-            android:id="@+id/lvCustListDU"
+            android:id="@+id/lvProductListDU"
             android:background="#2bbafc"
             android:dividerHeight="1dp"
             android:divider="#fff"
