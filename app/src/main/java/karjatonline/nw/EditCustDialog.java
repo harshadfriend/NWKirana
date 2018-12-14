@@ -87,10 +87,10 @@ public class EditCustDialog extends AppCompatActivity {
                     taskMap.put("city", etEUDadd.getText().toString());
                     taskMap.put("mobile", etEUDphone.getText().toString());
                     firebase.child("cust").child(custkey).updateChildren(taskMap);
-
+                    Toast.makeText(EditCustDialog.this, "Success", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
-                Toast.makeText(EditCustDialog.this, "Success", Toast.LENGTH_SHORT).show();
-                onBackPressed();
+
                // otherset(etEUDname.getText().toString().toUpperCase());
             }
         });

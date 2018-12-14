@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
@@ -20,9 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EditProductDialog extends AppCompatActivity {
-    EditText etEUDname,etEUDrate;
+    EditText etEUDname,etEUDrate,etQuantity;
     Button btnEUDsave;
     String custkey;
+    TextView tvQuantity;
 
     Firebase firebase;
 
@@ -48,6 +50,9 @@ public class EditProductDialog extends AppCompatActivity {
 
         etEUDname=findViewById(R.id.etEUDname);
         etEUDrate=findViewById(R.id.etEUDrate);
+        etQuantity=findViewById(R.id.etQuantity);
+
+        tvQuantity=findViewById(R.id.tvQuantity);
 //        etEUDphone=findViewById(R.id.etEUDphone);
 
         btnEUDsave=findViewById(R.id.btnEUDsave);
@@ -60,6 +65,7 @@ public class EditProductDialog extends AppCompatActivity {
                 fbase f=dataSnapshot.getValue(fbase.class);   //no need of looping when u directly get the child
                 etEUDname.setText(f.getPname());
                 etEUDrate.setText(f.getPrate());
+                tvQuantity.setText(f.getPquantity());
 //                etEUDphone.setText(f.getmobile());
 //                }
             }
@@ -77,20 +83,24 @@ public class EditProductDialog extends AppCompatActivity {
             public void onClick(View v) {
                 if(etEUDname.getText().toString().isEmpty()) etEUDname.setError("Name cannot be empty");
                 if(etEUDrate.getText().toString().isEmpty()) etEUDrate.setError("City cannot be empty");
+                if(etQuantity.getText().toString().isEmpty()) etQuantity.setText("0");
 //                if(etEUDphone.getText().toString().isEmpty()) etEUDphone.setError("Phone cannot be empty");
 
                 if(!etEUDname.getText().toString().isEmpty() && !etEUDrate.getText().toString().isEmpty()){// &&
 //                        !etEUDphone.getText().toString().isEmpty()) {
 
+                    int q=Integer.parseInt(tvQuantity.getText().toString());
+                    q=q+Integer.parseInt(etQuantity.getText().toString());
+
                     Map<String, Object> taskMap = new HashMap<String, Object>();
                     taskMap.put("pname", etEUDname.getText().toString().toUpperCase());
                     taskMap.put("prate", etEUDrate.getText().toString());
-//                    taskMap.put("mobile", etEUDphone.getText().toString());
+                    taskMap.put("pquantity", String.valueOf(q));
                     firebase.child("product").child(custkey).updateChildren(taskMap);
-
+                    Toast.makeText(EditProductDialog.this, "Success", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
-                Toast.makeText(EditProductDialog.this, "Success", Toast.LENGTH_SHORT).show();
-                onBackPressed();
+
                // otherset(etEUDname.getText().toString().toUpperCase());
             }
         });

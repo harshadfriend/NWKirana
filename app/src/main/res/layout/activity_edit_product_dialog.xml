@@ -13,12 +13,15 @@
         android:layout_height="wrap_content">
         <TextView
             android:text="Name"
+            android:padding="2dp"
+            android:textSize="20dp"
+            android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:id="@+id/etEUDname"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -30,14 +33,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:textSize="20dp"
+            android:padding="2dp"
+            android:gravity="center_vertical"
             android:text="Rate"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         <EditText
-            android:layout_weight="2"
+            android:layout_weight="4"
+            android:inputType="number"
             android:id="@+id/etEUDrate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20dp"
+            android:gravity="center_vertical"
+            android:text="Stock"
+            android:padding="2dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:enabled="false"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="+"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:enabled="false"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_weight="1"
+            android:id="@+id/etQuantity"
+            android:inputType="number"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
