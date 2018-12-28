@@ -35,10 +35,12 @@ public class ProductList extends AppCompatActivity {
     Firebase firebase;
     DatabaseReference dbRef;
 
+    myadapter madp;
+
     // FloatingActionButton fabadd;
 
     LinearLayout ll;
-    ListView lvCustList;
+    ListView lvPList;
 
 
     @Override
@@ -46,7 +48,7 @@ public class ProductList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        lvCustList=findViewById(R.id.lvProductList);
+        lvPList=findViewById(R.id.lvProductList);
 
 
        /* fabadd=findViewById(R.id.fabAdd);
@@ -72,7 +74,7 @@ public class ProductList extends AppCompatActivity {
 //        ladp=new ArrayAdapter<String>(this,R.layout.listbutton);
 
         //apply style to basic listview items
-        ladp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1){
+     /*   ladp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1){
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -91,7 +93,8 @@ public class ProductList extends AppCompatActivity {
             }
         };
         ladp.setNotifyOnChange(true);
-        lvCustList.setAdapter(ladp);
+        lvPList.setAdapter(ladp);*/
+
 
 
 
@@ -108,9 +111,12 @@ public class ProductList extends AppCompatActivity {
 
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][3];
+                int x=0,y=0;
                 keyArrayList.clear();i=0;
                 adp.clear();
-                ladp.clear();
+//                ladp.clear();
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     fbase pson = data.getValue(fbase.class);
                     //Toast.makeText(busGrid.this, "Name: " + pson.getName() + "Address: " + pson.getAddress(), Toast.LENGTH_SHORT).show();
@@ -125,11 +131,21 @@ public class ProductList extends AppCompatActivity {
                     Log.d("logg","inside i "+data.getKey());
                     i++;
 
+                    str[x][y]=pson.getPname();
+                    y++;
+                    str[x][y]=pson.getPrate();
+                    y++;
+                    str[x][y]=pson.getPquantity();
+                    y=0;
+                    x++;
+
 //                    a=pson.getadd();
 //                    if(i==1){ b=pson.getadd();Log.d("logg","inside i eqil 1"+b);}
 //                    if(i==2) c=pson.getadd();
 
                 }
+                madp=new myadapter(ProductList.this,R.layout.productlist_adapter,str);
+                lvPList.setAdapter(madp);
 
             }
 
@@ -176,7 +192,7 @@ public class ProductList extends AppCompatActivity {
             }
         });
 
-        lvCustList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvPList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("logg",""+parent.getItemAtPosition(position));
