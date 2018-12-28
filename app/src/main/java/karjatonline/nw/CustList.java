@@ -166,12 +166,12 @@ public class CustList extends AppCompatActivity {
 
         });
 //        Log.d("logg",""+a+b+c);
-        /*actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(MainActivity.this, ""+parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
                 Log.d("logg",""+parent.getItemAtPosition(position));
-                Intent i=new Intent(getApplicationContext(),CustomerDetails.class);
+                Intent i=new Intent(getApplicationContext(),CustDetails.class);
                 i.putExtra("name",""+parent.getItemAtPosition(position));
                 // i.putExtra("custkey","0");
                 startActivity(i);
@@ -184,12 +184,12 @@ public class CustList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("logg",""+parent.getItemAtPosition(position));
-                Intent i=new Intent(getApplicationContext(),CustomerDetails.class);
+                Intent i=new Intent(getApplicationContext(),CustDetails.class);
                 i.putExtra("name",""+parent.getItemAtPosition(position));
                 // i.putExtra("custkey",keyArrayList.get(position));
                 startActivity(i);
             }
-        });*/
+        });
 
     }
 

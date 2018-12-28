@@ -21,6 +21,7 @@ public class Home extends AppCompatActivity {
         btnEditCust=findViewById(R.id.btnEditCust);
         btnEditProduct=findViewById(R.id.btnEditProduct);
 
+
         btnAddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

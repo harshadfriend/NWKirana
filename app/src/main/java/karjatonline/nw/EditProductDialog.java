@@ -59,6 +59,7 @@ public class EditProductDialog extends AppCompatActivity {
 
         Query q=dbRef.child("product").child(custkey);
         q.addListenerForSingleValueEvent(new ValueEventListener() {
+        //q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 //                for(DataSnapshot data:dataSnapshot.getChildren()){
