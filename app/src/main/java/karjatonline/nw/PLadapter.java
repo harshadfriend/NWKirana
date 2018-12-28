@@ -28,14 +28,14 @@ import karjatonline.nw.R;
  * Created by Dell on 09-Mar-18.
  */
 
-public class myadapter extends ArrayAdapter{
+public class PLadapter extends ArrayAdapter{
     Context context;
     int layoutResourceId;
     String[][] data=null;
 
     //List<string_item> data=null;
 
-    public myadapter(Context context, int resource, String[][] objects) {
+    public PLadapter(Context context, int resource, String[][] objects) {
         //public myadapter(Context context, int resource, List<string_item> objects) {
 //        super(context, resource, objects);
         super(context,resource,objects);
@@ -77,6 +77,10 @@ public class myadapter extends ArrayAdapter{
 
 
         Log.d("logg","date"+data[position][0]);
+
+        holder.tvPstock.setTypeface(Typeface.DEFAULT_BOLD);
+        holder.tvPrate.setTypeface(Typeface.DEFAULT_BOLD);
+        holder.tvPname.setTypeface(Typeface.DEFAULT_BOLD);
 
         holder.tvPname.setText(" "+data[position][0]);
         holder.tvPrate.setText(" "+data[position][1]);

@@ -35,7 +35,7 @@ public class ProductList extends AppCompatActivity {
     Firebase firebase;
     DatabaseReference dbRef;
 
-    myadapter madp;
+    PLadapter madp;
 
     // FloatingActionButton fabadd;
 
@@ -144,7 +144,7 @@ public class ProductList extends AppCompatActivity {
 //                    if(i==2) c=pson.getadd();
 
                 }
-                madp=new myadapter(ProductList.this,R.layout.productlist_adapter,str);
+                madp=new PLadapter(ProductList.this,R.layout.productlist_adapter,str);
                 lvPList.setAdapter(madp);
 
             }

@@ -25,7 +25,8 @@
         <activity android:name=".EditCust" />
         <activity android:name=".EditProductDialog" />
         <activity android:name=".EditProduct" />
-        <activity android:name=".CustDetails"></activity>
+        <activity android:name=".CustDetails" />
+        <activity android:name=".NewOrder"></activity>
     </application>
 
 </manifest>
