@@ -127,7 +127,7 @@ public class ProductList extends AppCompatActivity {
                     keyArrayList.add(data.getKey());
                     a=pson.getName();
                     adp.add(""+pson.getPname());
-                    ladp.add(""+pson.getPname());
+//                    ladp.add(""+pson.getPname());
                     Log.d("logg","inside i "+data.getKey());
                     i++;
 
