@@ -51,6 +51,8 @@ public class CustList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_list);
 
+        setTitle("Customers");
+
         lvCustList=findViewById(R.id.lvCustList);
 
 
