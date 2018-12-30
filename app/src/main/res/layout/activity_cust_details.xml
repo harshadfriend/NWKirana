@@ -119,9 +119,11 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:id="@+id/fabNewPledge"
+            android:id="@+id/fabNewOrder"
             android:clickable="true"
             app:srcCompat="@android:drawable/ic_menu_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+
     </RelativeLayout>

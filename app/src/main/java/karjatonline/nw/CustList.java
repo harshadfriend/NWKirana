@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +40,7 @@ public class CustList extends AppCompatActivity {
     Firebase firebase;
     DatabaseReference dbRef;
 
-   // FloatingActionButton fabadd;
+    FloatingActionButton fabadd;
 
     LinearLayout ll;
     ListView lvCustList;
@@ -53,13 +54,13 @@ public class CustList extends AppCompatActivity {
         lvCustList=findViewById(R.id.lvCustList);
 
 
-       /* fabadd=findViewById(R.id.fabAdd);
+        fabadd=findViewById(R.id.fabAddCust);
         fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),AddCustomer.class));
             }
-        });*/
+        });
 
        // ll=(LinearLayout)findViewById(R.id.ll);
 
