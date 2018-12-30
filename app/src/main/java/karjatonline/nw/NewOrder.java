@@ -33,7 +33,7 @@ public class NewOrder extends AppCompatActivity {
     String[] sP,sR,sQ;
     AutoCompleteTextView actvNOproduct;
     EditText etNOquantity;
-    TextView tvNOrate,tvNOtotal;
+    TextView tvNOrate,tvNOtotal,tvNOstock;
     ArrayAdapter<String> adp;
 
 
@@ -52,6 +52,7 @@ public class NewOrder extends AppCompatActivity {
         etNOquantity=findViewById(R.id.etNOquantity);
         tvNOtotal=findViewById(R.id.tvNOtotal);
         tvNOrate=findViewById(R.id.tvNOrate);
+        tvNOstock=findViewById(R.id.tvNOstock);
 
         com.google.firebase.database.Query q=dbRef.child("product");
         q.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
@@ -99,10 +100,16 @@ public class NewOrder extends AppCompatActivity {
         actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < sP.length ; i++) {
                     if(sP[i].equals(parent.getItemAtPosition(position).toString())){
                         tvNOrate.setText(sR[i]);
+                        tvNOstock.setText(sQ[i]);
+                        //disable setquantity and set quantity as 0
+                        if (sQ[i].equals("0")){
+                            etNOquantity.setText("0");
+                            etNOquantity.setEnabled(false);
+                        }
                     }
                 }
                 total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
@@ -120,7 +127,7 @@ public class NewOrder extends AppCompatActivity {
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-               Toast.makeText(NewOrder.this, "editor", Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(NewOrder.this, "editor", Toast.LENGTH_SHORT).show();
                if(s.toString().length()>0){
                    total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
                    tvNOtotal.setText(""+total);
