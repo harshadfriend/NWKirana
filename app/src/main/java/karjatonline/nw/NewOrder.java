@@ -33,15 +33,20 @@ public class NewOrder extends AppCompatActivity {
     String[] sP,sR,sQ;
     AutoCompleteTextView actvNOproduct;
     EditText etNOquantity;
-    TextView tvNOrate,tvNOtotal,tvNOstock;
+    TextView tvNOrate,tvNOtotal,tvNOstock,tvNOname;
     ArrayAdapter<String> adp;
-
+    String name;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
+
+        setTitle("New Order");
+
+        Bundle extras=getIntent().getExtras();
+        name=extras.getString("name");
 
         Firebase.setAndroidContext(this);
 
@@ -53,6 +58,9 @@ public class NewOrder extends AppCompatActivity {
         tvNOtotal=findViewById(R.id.tvNOtotal);
         tvNOrate=findViewById(R.id.tvNOrate);
         tvNOstock=findViewById(R.id.tvNOstock);
+        tvNOname=findViewById(R.id.tvNOname);
+
+        tvNOname.setText(name);
 
         com.google.firebase.database.Query q=dbRef.child("product");
         q.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
