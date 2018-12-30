@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -106,7 +107,39 @@ public class ProductList extends AppCompatActivity {
         //Query query=dbRef.child("person").orderByChild("name").equalTo(etSearch.getText().toString());
 //        Query query = dbRef.child("siot").orderByChild("name").equalTo("seema");
         Query query = dbRef.child("product");
+
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                fbase f=dataSnapshot.getValue(fbase.class);
+                Log.d("logd added",dataSnapshot.getKey()+" "+f.getPname());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                fbase f=dataSnapshot.getValue(fbase.class);
+                Log.d("logd changed",dataSnapshot.getKey()+" "+f.getPname());
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                fbase f=dataSnapshot.getValue(fbase.class);
+                Log.d("logd removed",dataSnapshot.getKey()+" "+f.getPname());
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         query.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+
             int i=0;
 
             @Override
