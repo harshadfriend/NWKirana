@@ -38,7 +38,7 @@ public class NewOrder extends AppCompatActivity {
     Firebase firebase;
     DatabaseReference dbRef;
 
-    double total;
+    double total=0;
 
     String[] sP,sR,sQ;
     AutoCompleteTextView actvNOproduct;
@@ -46,8 +46,8 @@ public class NewOrder extends AppCompatActivity {
     TextView tvNOrate,tvNOtotal,tvNOstock;
     static TextView tvNOname;
     ArrayAdapter<String> adp;
-    static String name;
-    String date,custkey;
+    static String name,date;
+    String custkey;
     Button btnPlaceOrder;
 
     FloatingActionButton fabNOnewItem;
@@ -149,6 +149,7 @@ public class NewOrder extends AppCompatActivity {
                 fbase f=new fbase();
                 f.setDate(date);
                 f.setName(name);
+                f.setOrdertotal(""+total);
                 String orderKey=firebase.push().getKey();
                 firebase.child("orders").child(custkey).child(orderKey).setValue(f);
 
@@ -223,7 +224,8 @@ public class NewOrder extends AppCompatActivity {
     }
 
     public static void setDate(int x,int y,int z){
-        tvNOname.setText(name+", "+x+"/"+y+"/"+z);
+        date=x+"/"+y+"/"+z;
+        tvNOname.setText(name+", "+date);
     }
 
     public void showDatePickerDialog(View v) {

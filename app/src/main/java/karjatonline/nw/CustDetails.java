@@ -98,8 +98,9 @@ public class CustDetails extends AppCompatActivity {
                 int i=0;
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
-                    Log.d("custorders", data.getKey());
-                    str[i]=data.getKey();
+                    Log.d("custorders", data.getKey()+" "+f.getDate());
+//                    str[i]=data.getKey();
+                    str[i]=(i+1)+". Date:-"+f.getDate()+" Total="+f.getOrdertotal();
                     i++;
                 }
 
