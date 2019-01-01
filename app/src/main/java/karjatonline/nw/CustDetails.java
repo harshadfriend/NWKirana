@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class CustDetails extends AppCompatActivity {
     FloatingActionButton fab;
     String name,custkey;
     ListView lvCustDetails;
+
+    ArrayAdapter<String> adp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +90,23 @@ public class CustDetails extends AppCompatActivity {
 
     public void fn(){
         Query q=dbRef.child("orders").child(custkey);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
+        q.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
+                int i=0;
                 for(DataSnapshot data:dataSnapshot.getChildren()){
+                    fbase f=data.getValue(fbase.class);
                     Log.d("custorders", data.getKey());
+                    str[i]=data.getKey();
+                    i++;
                 }
+
+                adp=new ArrayAdapter<>(CustDetails.this,android.R.layout.simple_list_item_1,str);
+                lvCustDetails.setAdapter(adp);
+                adp.setNotifyOnChange(true);
+
             }
 
             @Override
