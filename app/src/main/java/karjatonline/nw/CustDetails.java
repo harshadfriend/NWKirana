@@ -52,7 +52,7 @@ public class CustDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),NewOrder.class);
+                Intent i=new Intent(getApplicationContext(),NewOrder_old.class);
                 i.putExtra("name",name);
                 startActivity(i);
             }
@@ -65,7 +65,7 @@ public class CustDetails extends AppCompatActivity {
                 for (com.google.firebase.database.DataSnapshot data:dataSnapshot.getChildren()){
                     //fbase pson = data.getValue(fbase.class);
                     custkey=data.getKey();
-                    //  Toast.makeText(NewOrder.this, ""+custkey, Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(NewOrder_old.this, ""+custkey, Toast.LENGTH_SHORT).show();
                     Log.d("logd",""+custkey);
                 }
 
