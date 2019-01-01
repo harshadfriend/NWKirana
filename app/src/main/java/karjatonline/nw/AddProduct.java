@@ -47,7 +47,7 @@ public class AddProduct extends AppCompatActivity {
                     fb2.setPquantity(etPquantity.getText().toString());
                     Log.d("logg", "inside if");
                     firebase.child("product").push().setValue(fb);
-                    firebase.child("stock").child(etPname.getText().toString()).setValue(fb2);
+                   // firebase.child("stock").child(etPname.getText().toString()).setValue(fb2);
 //                    firebase.child("transactions").child(etPname.getText().toString());
 
 

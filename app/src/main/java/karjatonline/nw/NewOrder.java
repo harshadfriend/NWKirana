@@ -1,6 +1,10 @@
 package karjatonline.nw;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,6 +15,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class NewOrder extends AppCompatActivity {
     String dburl="https://nwkirana-3eb2e.firebaseio.com/";
 
@@ -33,9 +41,15 @@ public class NewOrder extends AppCompatActivity {
     String[] sP,sR,sQ;
     AutoCompleteTextView actvNOproduct;
     EditText etNOquantity;
-    TextView tvNOrate,tvNOtotal,tvNOstock,tvNOname;
+    TextView tvNOrate,tvNOtotal,tvNOstock;
+    static TextView tvNOname;
     ArrayAdapter<String> adp;
-    String name;
+    static String name;
+    String date,custkey;
+    Button btnPlaceOrder;
+
+    FloatingActionButton fabNOnewItem;
+    int fabnewitemcount=0;
 
 
     @Override
@@ -53,6 +67,16 @@ public class NewOrder extends AppCompatActivity {
         firebase=new Firebase(dburl);
         dbRef = FirebaseDatabase.getInstance().getReference();
 
+        fabNOnewItem=findViewById(R.id.fabNOnewItem);
+        fabNOnewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnPlaceOrder=findViewById(R.id.btnPlaceOrder);
+
         actvNOproduct=findViewById(R.id.etNOproduct);
         etNOquantity=findViewById(R.id.etNOquantity);
         tvNOtotal=findViewById(R.id.tvNOtotal);
@@ -60,7 +84,31 @@ public class NewOrder extends AppCompatActivity {
         tvNOstock=findViewById(R.id.tvNOstock);
         tvNOname=findViewById(R.id.tvNOname);
 
-        tvNOname.setText(name);
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        date=day+"/"+(month+1)+"/"+year;
+        tvNOname.setText(name+", "+date);
+
+        com.google.firebase.database.Query k=dbRef.child("cust").orderByChild("name").equalTo(name);
+        k.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull com.google.firebase.database.DataSnapshot dataSnapshot) {
+                for (com.google.firebase.database.DataSnapshot data:dataSnapshot.getChildren()){
+                    //fbase pson = data.getValue(fbase.class);
+                    custkey=data.getKey();
+                    Toast.makeText(NewOrder.this, ""+custkey, Toast.LENGTH_SHORT).show();
+                    Log.d("logd",""+custkey);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         com.google.firebase.database.Query q=dbRef.child("product");
         q.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
@@ -93,8 +141,21 @@ public class NewOrder extends AppCompatActivity {
             }
         });
 
+        btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fbase f=new fbase();
+                f.setDate(date);
+                String orderKey=firebase.push().getKey();
+                firebase.child("orders").child(custkey).child(orderKey).setValue(f);
+
+            }
+        });
 
 
+    }
+
+    public void actvclick(){
 
     }
 
@@ -105,7 +166,10 @@ public class NewOrder extends AppCompatActivity {
         adp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,sP);
         actvNOproduct.setAdapter(adp);
 
-        actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+     /*   actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
               //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
@@ -123,7 +187,7 @@ public class NewOrder extends AppCompatActivity {
                 total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
                 tvNOtotal.setText(""+total);
             }
-        });
+        });*/
 
 
        etNOquantity.addTextChangedListener(new TextWatcher() {
@@ -139,10 +203,13 @@ public class NewOrder extends AppCompatActivity {
                if(s.toString().length()>0){
                    total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
                    tvNOtotal.setText(""+total);
+                   fbase f=new fbase();
+
                }
                else {
                    tvNOtotal.setText("0");
                }
+
            }
 
            @Override
@@ -152,5 +219,40 @@ public class NewOrder extends AppCompatActivity {
        });
 
 
+    }
+
+    public static void setDate(int x,int y,int z){
+        tvNOname.setText(name+", "+x+"/"+y+"/"+z);
+    }
+
+    public void showDatePickerDialog(View v) {
+       // Toast.makeText(this, "datepicker touched", Toast.LENGTH_SHORT).show();
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "test");
+
+    }
+
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+            NewOrder.setDate(day,(month+1),year);
+        }
     }
 }

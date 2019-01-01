@@ -18,6 +18,7 @@
 
             <TextView
                 android:id="@+id/tvNOname"
+                android:onClick="showDatePickerDialog"
                 android:background="@drawable/titleback"
                 android:textColor="#fff"
                 android:padding="5dp"
@@ -113,6 +114,7 @@
                 android:padding="2dp"
                 android:background="@drawable/borderproductitem"
                 android:id="@+id/tvNOtotal"
+                android:text="0"
                 android:textSize="15dp"
                 android:layout_weight="2"
                 android:layout_width="0dp"
@@ -122,6 +124,13 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabNOnewItem"
+        android:layout_above="@+id/btnPlaceOrder"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btnPlaceOrder"
         android:text="Place Order"

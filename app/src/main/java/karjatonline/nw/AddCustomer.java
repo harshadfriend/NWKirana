@@ -47,7 +47,7 @@ public class AddCustomer extends AppCompatActivity {
                     fb2.setName(etname.getText().toString());
                     Log.d("logg", "inside if");
                     firebase.child("cust").push().setValue(fb);
-//                    firebase.child("pledge").child(etname.getText().toString());
+                    //firebase.child("orders").child(etname.getText().toString());
 //                    firebase.child("transactions").child(etname.getText().toString());
 
 
