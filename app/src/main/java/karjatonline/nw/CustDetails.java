@@ -52,7 +52,7 @@ public class CustDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),NewOrder_old.class);
+                Intent i=new Intent(getApplicationContext(),NewOrder.class);
                 i.putExtra("name",name);
                 startActivity(i);
             }
