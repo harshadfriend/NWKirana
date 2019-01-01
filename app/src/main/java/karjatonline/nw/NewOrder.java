@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,13 +18,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,9 +35,14 @@ public class NewOrder extends AppCompatActivity {
     double total=0;
 
     String[] sP,sR,sQ;
-    AutoCompleteTextView actvP1,actvP2,actvP3,actvP4,actvP5,actvP6,actvP7,actvP8,actvP9,actvP10,actvP11,actvP12,actvP13,actvP14,actvP15;
-    EditText etNOquantity;
-    TextView tvNOrate,tvNOtotal,tvNOstock;
+    AutoCompleteTextView actvP1,actvP2,actvP3,actvP4,actvP5,actvP6,actvP7,actvP8,actvP9,actvP10,
+            actvP11,actvP12,actvP13,actvP14,actvP15;
+    EditText etQ1,etQ2,etQ3,etQ4,etQ5,etQ6,etQ7,etQ8,etQ9,etQ10,etQ11,etQ12,etQ13,etQ14,etQ15;
+    TextView tvR1,tvR2,tvR3,tvR4,tvR5,tvR6,tvR7,tvR8,tvR9,tvR10,tvR11,tvR12,tvR13,tvR14,tvR15;
+    TextView tvS1,tvS2,tvS3,tvS4,tvS5,tvS6,tvS7,tvS8,tvS9,tvS10,tvS11,tvS12,tvS13,tvS14,tvS15;
+    TextView tvT1,tvT2,tvT3,tvT4,tvT5,tvT6,tvT7,tvT8,tvT9,tvT10,tvT11,tvT12,tvT13,tvT14,tvT15;
+
+    //TextView tvNOrate,tvNOtotal,tvNOstock;
     static TextView tvNOname;
     ArrayAdapter<String> adp;
     static String name,date;
@@ -57,7 +56,7 @@ public class NewOrder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_order);
+        setContentView(R.layout.activity_new_order_old);
 
         setTitle("New Order");
 
@@ -80,14 +79,85 @@ public class NewOrder extends AppCompatActivity {
         btnPlaceOrder=findViewById(R.id.btnPlaceOrder);
 
         actvP1=findViewById(R.id.etp1);
+        actvP2=findViewById(R.id.etp2);
+        actvP3=findViewById(R.id.etp3);
+        actvP4=findViewById(R.id.etp4);
+        actvP5=findViewById(R.id.etp5);
+        actvP6=findViewById(R.id.etp6);
+        actvP7=findViewById(R.id.etp7);
+        actvP8=findViewById(R.id.etp8);
+        actvP9=findViewById(R.id.etp9);
+        actvP10=findViewById(R.id.etp10);
+        actvP11=findViewById(R.id.etp11);
+        actvP12=findViewById(R.id.etp12);
+        actvP13=findViewById(R.id.etp13);
+        actvP14=findViewById(R.id.etp14);
+        actvP15=findViewById(R.id.etp15);
 
-        etNOquantity=findViewById(R.id.etNOquantity);
+        etQ1=findViewById(R.id.etQ1);
+        etQ2=findViewById(R.id.etQ2);
+        etQ3=findViewById(R.id.etQ3);
+        etQ4=findViewById(R.id.etQ4);
+        etQ5=findViewById(R.id.etQ5);
+        etQ6=findViewById(R.id.etQ6);
+        etQ7=findViewById(R.id.etQ7);
+        etQ8=findViewById(R.id.etQ8);
+        etQ9=findViewById(R.id.etQ9);
+        etQ10=findViewById(R.id.etQ10);
+        etQ11=findViewById(R.id.etQ11);
+        etQ12=findViewById(R.id.etQ12);
+        etQ13=findViewById(R.id.etQ13);
+        etQ14=findViewById(R.id.etQ14);
+        etQ15=findViewById(R.id.etQ15);
 
-        tvNOtotal=findViewById(R.id.tvNOtotal);
+        tvT1=findViewById(R.id.tvT1);
+        tvT2=findViewById(R.id.tvT2);
+        tvT3=findViewById(R.id.tvT3);
+        tvT4=findViewById(R.id.tvT4);
+        tvT5=findViewById(R.id.tvT5);
+        tvT6=findViewById(R.id.tvT6);
+        tvT7=findViewById(R.id.tvT7);
+        tvT8=findViewById(R.id.tvT8);
+        tvT9=findViewById(R.id.tvT9);
+        tvT10=findViewById(R.id.tvT10);
+        tvT11=findViewById(R.id.tvT11);
+        tvT12=findViewById(R.id.tvT12);
+        tvT13=findViewById(R.id.tvT13);
+        tvT14=findViewById(R.id.tvT14);
+        tvT15=findViewById(R.id.tvT15);
 
-        tvNOrate=findViewById(R.id.tvNOrate);
+        tvR1=findViewById(R.id.tvR1);
+        tvR2=findViewById(R.id.tvR2);
+        tvR3=findViewById(R.id.tvR3);
+        tvR4=findViewById(R.id.tvR4);
+        tvR5=findViewById(R.id.tvR5);
+        tvR6=findViewById(R.id.tvR6);
+        tvR7=findViewById(R.id.tvR7);
+        tvR8=findViewById(R.id.tvR8);
+        tvR9=findViewById(R.id.tvR9);
+        tvR10=findViewById(R.id.tvR10);
+        tvR11=findViewById(R.id.tvR11);
+        tvR12=findViewById(R.id.tvR12);
+        tvR13=findViewById(R.id.tvR13);
+        tvR14=findViewById(R.id.tvR14);
+        tvR15=findViewById(R.id.tvR15);
 
-        tvNOstock=findViewById(R.id.tvNOstock);
+        tvS1=findViewById(R.id.tvS1);
+        tvS2=findViewById(R.id.tvS2);
+        tvS3=findViewById(R.id.tvS3);
+        tvS4=findViewById(R.id.tvS4);
+        tvS5=findViewById(R.id.tvS5);
+        tvS6=findViewById(R.id.tvS6);
+        tvS7=findViewById(R.id.tvS7);
+        tvS8=findViewById(R.id.tvS8);
+        tvS9=findViewById(R.id.tvS9);
+        tvS10=findViewById(R.id.tvS10);
+        tvS11=findViewById(R.id.tvS11);
+        tvS12=findViewById(R.id.tvS12);
+        tvS13=findViewById(R.id.tvS13);
+        tvS14=findViewById(R.id.tvS14);
+        tvS15=findViewById(R.id.tvS15);
+
 
         tvNOname=findViewById(R.id.tvNOname);
 
@@ -168,30 +238,45 @@ public class NewOrder extends AppCompatActivity {
             Log.d("forloop",sP[i]);
         }
         adp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,sP);
-        actvNOproduct.setAdapter(adp);
+        actvP1.setAdapter(adp);
+        actvP2.setAdapter(adp);
+        actvP3.setAdapter(adp);
+        actvP4.setAdapter(adp);
+        actvP5.setAdapter(adp);
+        actvP6.setAdapter(adp);
+        actvP7.setAdapter(adp);
+        actvP8.setAdapter(adp);
+        actvP9.setAdapter(adp);
+        actvP10.setAdapter(adp);
+        actvP11.setAdapter(adp);
+        actvP12.setAdapter(adp);
+        actvP13.setAdapter(adp);
+        actvP14.setAdapter(adp);
+        actvP15.setAdapter(adp);
 
-        actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        actvP1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
               //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < sP.length ; i++) {
                     if(sP[i].equals(parent.getItemAtPosition(position).toString())){
-                        tvNOrate.setText(sR[i]);
-                        tvNOstock.setText(sQ[i]);
+                        tvR1.setText(sR[i]);
+                        tvS1.setText(sQ[i]);
                         //disable setquantity and set quantity as 0
                         if (sQ[i].equals("0")){
-                            etNOquantity.setText("0");
-                            etNOquantity.setEnabled(false);
+                            etQ1.setText("0");
+                            etQ1.setEnabled(false);
                         }
                     }
                 }
-                total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
-                tvNOtotal.setText(""+total);
+                total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
+                tvT1.setText(""+total);
             }
         });
 
 
-       etNOquantity.addTextChangedListener(new TextWatcher() {
+       etQ1.addTextChangedListener(new TextWatcher() {
            @Override
            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -202,13 +287,13 @@ public class NewOrder extends AppCompatActivity {
 
             //   Toast.makeText(NewOrder.this, "editor", Toast.LENGTH_SHORT).show();
                if(s.toString().length()>0){
-                   total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
-                   tvNOtotal.setText(""+total);
+                   total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
+                   tvT1.setText(""+total);
                    fbase f=new fbase();
 
                }
                else {
-                   tvNOtotal.setText("0");
+                   tvT1.setText("0");
                }
 
            }
@@ -218,6 +303,153 @@ public class NewOrder extends AppCompatActivity {
 
            }
        });
+
+        actvP2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < sP.length ; i++) {
+                    if(sP[i].equals(parent.getItemAtPosition(position).toString())){
+                        tvR2.setText(sR[i]);
+                        tvS2.setText(sQ[i]);
+                        //disable setquantity and set quantity as 0
+                        if (sQ[i].equals("0")){
+                            etQ2.setText("0");
+                            etQ2.setEnabled(false);
+                        }
+                    }
+                }
+                total=Double.parseDouble(tvR2.getText().toString())*Double.parseDouble(etQ2.getText().toString());
+                tvT2.setText(""+total);
+            }
+        });
+
+
+        etQ2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                //   Toast.makeText(NewOrder.this, "editor", Toast.LENGTH_SHORT).show();
+                if(s.toString().length()>0){
+                    total=Double.parseDouble(tvR2.getText().toString())*Double.parseDouble(etQ2.getText().toString());
+                    tvT2.setText(""+total);
+                    fbase f=new fbase();
+
+                }
+                else {
+                    tvT2.setText("0");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        actvP3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < sP.length ; i++) {
+                    if(sP[i].equals(parent.getItemAtPosition(position).toString())){
+                        tvR3.setText(sR[i]);
+                        tvS3.setText(sQ[i]);
+                        //disable setquantity and set quantity as 0
+                        if (sQ[i].equals("0")){
+                            etQ3.setText("0");
+                            etQ3.setEnabled(false);
+                        }
+                    }
+                }
+                total=Double.parseDouble(tvR3.getText().toString())*Double.parseDouble(etQ3.getText().toString());
+                tvT3.setText(""+total);
+            }
+        });
+
+
+        etQ3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                //   Toast.makeText(NewOrder.this, "editor", Toast.LENGTH_SHORT).show();
+                if(s.toString().length()>0){
+                    total=Double.parseDouble(tvR3.getText().toString())*Double.parseDouble(etQ3.getText().toString());
+                    tvT3.setText(""+total);
+                    fbase f=new fbase();
+
+                }
+                else {
+                    tvT3.setText("0");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        actvP4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < sP.length ; i++) {
+                    if(sP[i].equals(parent.getItemAtPosition(position).toString())){
+                        tvR4.setText(sR[i]);
+                        tvS4.setText(sQ[i]);
+                        //disable setquantity and set quantity as 0
+                        if (sQ[i].equals("0")){
+                            etQ4.setText("0");
+                            etQ4.setEnabled(false);
+                        }
+                    }
+                }
+                total=Double.parseDouble(tvR4.getText().toString())*Double.parseDouble(etQ4.getText().toString());
+                tvT4.setText(""+total);
+            }
+        });
+
+
+        etQ4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                //   Toast.makeText(NewOrder.this, "editor", Toast.LENGTH_SHORT).show();
+                if(s.toString().length()>0){
+                    total=Double.parseDouble(tvR4.getText().toString())*Double.parseDouble(etQ4.getText().toString());
+                    tvT4.setText(""+total);
+                    fbase f=new fbase();
+
+                }
+                else {
+                    tvT4.setText("0");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 

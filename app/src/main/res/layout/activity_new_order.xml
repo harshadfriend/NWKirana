@@ -7,810 +7,117 @@
     android:layout_height="match_parent"
     tools:context=".NewOrder">
 
+    <TextView
+        android:layout_alignParentTop="true"
+        android:id="@+id/tvNOname"
+        android:onClick="showDatePickerDialog"
+        android:background="@drawable/titleback"
+        android:textColor="#fff"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <ScrollView
+
+    <LinearLayout
+        android:id="@+id/lltitles"
+        android:layout_above="@+id/llfields"
+        android:padding="2dp"
+        android:background="@drawable/border2"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:text="Product Name"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Rs"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Stk"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Qty"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tvNOname"
-                android:onClick="showDatePickerDialog"
-                android:background="@drawable/titleback"
-                android:textColor="#fff"
-                android:padding="5dp"
-                android:gravity="center"
-                android:textSize="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:text="Total"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llfields"
+        android:layout_above="@+id/btnAddItem"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <AutoCompleteTextView
             android:padding="2dp"
-            android:background="@drawable/border2"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Product Name"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:layout_weight="4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="Rs"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="Stk"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="Qty"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+            android:background="@drawable/borderproductitem"
+            android:id="@+id/etp1"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"/>
+        <TextView
+            android:padding="2dp"
+            android:background="@drawable/borderproductitem"
+            android:id="@+id/tvR1"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:padding="2dp"
+            android:background="@drawable/borderproductitem"
+            android:id="@+id/tvS1"
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <EditText
+            android:padding="2dp"
+            android:background="@drawable/borderproductitem"
+            android:id="@+id/etQ1"
+            android:text="1"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:text="Total"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:layout_weight="2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:padding="2dp"
+            android:background="@drawable/borderproductitem"
+            android:id="@+id/tvT1"
+            android:text="0"
+            android:textSize="15dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <AutoCompleteTextView
-                android:padding="2dp"
-                android:background="@drawable/borderproductitem"
-                android:id="@+id/etp1"
-                android:layout_weight="4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:completionThreshold="1"/>
-            <TextView
-                android:padding="2dp"
-                android:background="@drawable/borderproductitem"
-                android:id="@+id/tvR1"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <TextView
-                android:padding="2dp"
-                android:background="@drawable/borderproductitem"
-                android:id="@+id/tvS1"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-            <EditText
-                android:padding="2dp"
-                android:background="@drawable/borderproductitem"
-                android:id="@+id/etQ1"
-                android:text="1"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:padding="2dp"
-                android:background="@drawable/borderproductitem"
-                android:id="@+id/tvT1"
-                android:text="0"
-                android:textSize="15dp"
-                android:layout_weight="2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp2"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR2"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS2"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ2"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT2"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp3"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR3"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS3"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ3"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT3"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp4"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR4"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS4"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ4"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT4"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp5"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR5"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS5"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ5"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT5"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp6"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR6"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS6"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ6"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT6"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp7"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR7"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS7"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ7"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT7"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp8"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR8"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS8"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ8"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT8"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp9"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR9"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS9"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ9"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT9"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp10"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR10"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS10"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ10"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT10"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp11"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR11"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS11"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ11"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT11"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp12"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR12"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS12"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ12"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT12"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp13"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR13"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS13"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ13"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT13"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp14"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR14"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS14"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ14"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT14"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etp15"
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:completionThreshold="1"/>
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvR15"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvS15"
-                    android:textSize="15dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-                <EditText
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/etQ15"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:inputType="number"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:padding="2dp"
-                    android:background="@drawable/borderproductitem"
-                    android:id="@+id/tvT15"
-                    android:text="0"
-                    android:textSize="15dp"
-                    android:layout_weight="2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:visibility="gone"
@@ -818,6 +125,12 @@
         android:layout_above="@+id/btnPlaceOrder"
         app:srcCompat="@android:drawable/ic_menu_add"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnAddItem"
+        android:text="Add Item"
+        android:layout_above="@+id/btnPlaceOrder"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/btnPlaceOrder"
