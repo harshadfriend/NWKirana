@@ -31,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewOrder extends AppCompatActivity {
 
@@ -189,7 +191,27 @@ public class NewOrder extends AppCompatActivity {
                 f2.setName(name);
                 f2.setOrdertotal(""+total);
 //                String orderKey=firebase.push().getKey();
-                firebase.child("orders").child(custkey).child(orderKey).push().setValue(f2);
+                firebase.child("orders").child(custkey).child(orderKey).setValue(f2);
+
+                Query q=dbRef.child("product");
+                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String productkey="";int i=0;
+                        for(DataSnapshot data:dataSnapshot.getChildren()){
+                            productkey=data.getKey();
+                            Map<String, Object> taskMap = new HashMap<String, Object>();
+                            taskMap.put("pquantity",sQ[i] );
+                            firebase.child("product").child(productkey).updateChildren(taskMap);
+                            i++;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 onBackPressed();
             }
         });
