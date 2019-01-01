@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NewOrder extends AppCompatActivity {
@@ -48,7 +50,10 @@ public class NewOrder extends AppCompatActivity {
     int temp=0;
     //TextView tvNOrate,tvNOtotal,tvNOstock;
     static TextView tvNOname;
-    ArrayAdapter<String> adp, listorderitems;
+    ArrayAdapter<String> adp;
+
+    ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct;
+
     static String name,date;
     String custkey,orderKey;
     Button btnPlaceOrder,btnAddItem;
@@ -91,9 +96,15 @@ public class NewOrder extends AppCompatActivity {
 
         tvNOname=findViewById(R.id.tvNOname);
 
-        listorderitems=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-        listorderitems.setNotifyOnChange(true);
-        lvorderitemlist.setAdapter(listorderitems);
+        adpitem=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adpitem.setNotifyOnChange(true);
+        adpqty=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adpqty.setNotifyOnChange(true);
+        adptotal=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adptotal.setNotifyOnChange(true);
+        adpproduct=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adpproduct.setNotifyOnChange(true);
+        lvorderitemlist.setAdapter(adpitem);
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -173,11 +184,23 @@ public class NewOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                listorderitems.add("Q:"+etQ1.getText().toString()+" "+actvP1.getText().toString());
-                double qt=Double.parseDouble(sQ[temp])-Double.parseDouble(etQ1.getText().toString());
-                sQ[temp]=""+qt;
-                etQ1.setText("1");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
+                if(Integer.parseInt(etQ1.getText().toString())<=Integer.parseInt(sQ[temp])) {
 
+                    adpitem.add("Q:" + etQ1.getText().toString() + "\t\t" + actvP1.getText().toString() + "\t\tRs." + tvT1.getText().toString());
+                    adpproduct.add(actvP1.getText().toString());
+                    adpqty.add(etQ1.getText().toString());
+                    adptotal.add(tvT1.getText().toString());
+                    int qt = Integer.parseInt(sQ[temp]) - Integer.parseInt(etQ1.getText().toString());
+                    sQ[temp] = "" + qt;
+                    etQ1.setText("1");
+                    tvR1.setText("");
+                    tvS1.setText("");
+                    actvP1.setText("");
+                    tvT1.setText("0");
+                }
+                else{
+                    Toast.makeText(NewOrder.this, "Entered Quantity is more than stock !", Toast.LENGTH_SHORT).show();
+                }
   /*              fbase f=new fbase();
                 f.setDate(date);
                 f.setName(name);
@@ -237,10 +260,17 @@ public class NewOrder extends AppCompatActivity {
                         temp=i;
                         tvR1.setText(sR[i]);
                         tvS1.setText(sQ[i]);
+                       // Toast.makeText(NewOrder.this, ""+sQ[i], Toast.LENGTH_SHORT).show();
                         //disable setquantity and set quantity as 0
                         if (sQ[i].equals("0")){
                             etQ1.setText("0");
+                            btnAddItem.setEnabled(false);
                             etQ1.setEnabled(false);
+                        }
+                        else {
+                            etQ1.setText("1");
+                            btnAddItem.setEnabled(true);
+                            etQ1.setEnabled(true);
                         }
                     }
                 }
