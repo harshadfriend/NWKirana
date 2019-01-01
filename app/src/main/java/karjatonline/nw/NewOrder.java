@@ -113,7 +113,7 @@ public class NewOrder extends AppCompatActivity {
         });
 
         com.google.firebase.database.Query q=dbRef.child("product");
-        q.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+        q.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull com.google.firebase.database.DataSnapshot dataSnapshot) {
 
@@ -152,14 +152,11 @@ public class NewOrder extends AppCompatActivity {
                 f.setOrdertotal(""+total);
                 String orderKey=firebase.push().getKey();
                 firebase.child("orders").child(custkey).child(orderKey).setValue(f);
-
+                onBackPressed();
             }
         });
 
-
     }
-
-
 
     public void fn(){
         for(int i=0;i<sP.length;i++){
@@ -167,9 +164,6 @@ public class NewOrder extends AppCompatActivity {
         }
         adp=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,sP);
         actvNOproduct.setAdapter(adp);
-
-
-
 
         actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -220,7 +214,6 @@ public class NewOrder extends AppCompatActivity {
            }
        });
 
-
     }
 
     public static void setDate(int x,int y,int z){
@@ -234,9 +227,6 @@ public class NewOrder extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "test");
 
     }
-
-
-
 
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
