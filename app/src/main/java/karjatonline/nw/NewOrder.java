@@ -17,12 +17,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -45,11 +49,12 @@ public class NewOrder extends AppCompatActivity {
     static TextView tvNOname;
     ArrayAdapter<String> adp;
     static String name,date;
-    String custkey;
-    Button btnPlaceOrder;
+    String custkey,orderKey;
+    Button btnPlaceOrder,btnAddItem;
 
-    FloatingActionButton fabNOnewItem;
     int fabnewitemcount=0;
+
+    ListView lvorderitemlist;
 
 
     @Override
@@ -66,16 +71,12 @@ public class NewOrder extends AppCompatActivity {
 
         firebase=new Firebase(dburl);
         dbRef = FirebaseDatabase.getInstance().getReference();
+        orderKey=firebase.push().getKey();
 
-        fabNOnewItem=findViewById(R.id.fabNOnewItem);
-        fabNOnewItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        lvorderitemlist=findViewById(R.id.lvorderitemlist);
 
         btnPlaceOrder=findViewById(R.id.btnPlaceOrder);
+        btnAddItem=findViewById(R.id.btnAddItem);
 
         actvP1=findViewById(R.id.etp1);
 
@@ -146,6 +147,30 @@ public class NewOrder extends AppCompatActivity {
             }
         });
 
+        Query getitems=dbRef.child("orders").child(custkey).child(orderKey);
+        getitems.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
+                int i=0;
+                for (DataSnapshot data:dataSnapshot.getChildren()){
+                    fbase f=data.getValue(fbase.class);
+                    str[i]=f.getItem();
+                    i++;
+
+                }
+                ArrayAdapter<String> a=new ArrayAdapter<String>(NewOrder.this,android.R.layout.simple_list_item_1,str);
+                a.setNotifyOnChange(true);
+                lvorderitemlist.setAdapter(a);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,11 +178,30 @@ public class NewOrder extends AppCompatActivity {
                 f.setDate(date);
                 f.setName(name);
                 f.setOrdertotal(""+total);
-                String orderKey=firebase.push().getKey();
+//                String orderKey=firebase.push().getKey();
                 firebase.child("orders").child(custkey).child(orderKey).setValue(f);
                 onBackPressed();
             }
         });
+
+        btnAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fbase f=new fbase();
+                f.setDate(date);
+                f.setName(name);
+                f.setItem(actvP1.getText().toString());
+                f.setPquantity(etQ1.getText().toString());
+                orderKey=firebase.push().getKey();
+                firebase.child("orders").child(custkey).child(orderKey).setValue(f);
+
+                etQ1.setText("");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
+//                onBackPressed();
+            }
+        });
+
+
+
 
     }
 
