@@ -41,7 +41,7 @@ public class NewOrder extends AppCompatActivity {
     double total=0;
 
     String[] sP,sR,sQ;
-    AutoCompleteTextView actvNOproduct;
+    AutoCompleteTextView actvP1,actvP2,actvP3,actvP4,actvP5,actvP6,actvP7,actvP8,actvP9,actvP10,actvP11,actvP12,actvP13,actvP14,actvP15;
     EditText etNOquantity;
     TextView tvNOrate,tvNOtotal,tvNOstock;
     static TextView tvNOname;
@@ -79,11 +79,16 @@ public class NewOrder extends AppCompatActivity {
 
         btnPlaceOrder=findViewById(R.id.btnPlaceOrder);
 
-        actvNOproduct=findViewById(R.id.etNOproduct);
+        actvP1=findViewById(R.id.etp1);
+
         etNOquantity=findViewById(R.id.etNOquantity);
+
         tvNOtotal=findViewById(R.id.tvNOtotal);
+
         tvNOrate=findViewById(R.id.tvNOrate);
+
         tvNOstock=findViewById(R.id.tvNOstock);
+
         tvNOname=findViewById(R.id.tvNOname);
 
         Calendar c = Calendar.getInstance();
