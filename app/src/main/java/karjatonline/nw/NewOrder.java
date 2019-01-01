@@ -108,6 +108,8 @@ public class NewOrder extends AppCompatActivity {
                   //  Toast.makeText(NewOrder_old.this, ""+custkey, Toast.LENGTH_SHORT).show();
                     Log.d("logd",""+custkey);
                 }
+
+                setlist();
             }
 
             @Override
@@ -147,29 +149,7 @@ public class NewOrder extends AppCompatActivity {
             }
         });
 
-        Query getitems=dbRef.child("orders").child(custkey).child(orderKey);
-        getitems.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
-                int i=0;
-                for (DataSnapshot data:dataSnapshot.getChildren()){
-                    fbase f=data.getValue(fbase.class);
-                    str[i]=f.getItem();
-                    i++;
 
-                }
-                ArrayAdapter<String> a=new ArrayAdapter<String>(NewOrder.this,android.R.layout.simple_list_item_1,str);
-                a.setNotifyOnChange(true);
-                lvorderitemlist.setAdapter(a);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +183,32 @@ public class NewOrder extends AppCompatActivity {
 
 
 
+    }
+
+    public void setlist(){
+        Query getitems=dbRef.child("orders").child(custkey).child(orderKey);
+        getitems.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
+                int i=0;
+                for (DataSnapshot data:dataSnapshot.getChildren()){
+                    fbase f=data.getValue(fbase.class);
+                    str[i]=f.getItem();
+                    i++;
+
+                }
+                ArrayAdapter<String> a=new ArrayAdapter<String>(NewOrder.this,android.R.layout.simple_list_item_1,str);
+                a.setNotifyOnChange(true);
+                lvorderitemlist.setAdapter(a);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void fn(){
