@@ -11,7 +11,7 @@ public class fbase {
     private String pkey;
     private String dateintpaid,interest,months;
     private String roi,grosswt,netwt,comments;
-    private String ordertotal;
+    private String ordertotal,total;
 
     private String amount,princamount;
 
@@ -38,7 +38,13 @@ public class fbase {
     }
     */
 
+    public String getTotal(){
+        return total;
+    }
 
+    public void setTotal(String total){
+        this.total=total;
+    }
 
     public String getOrdertotal(){
         return ordertotal;

@@ -171,11 +171,25 @@ public class NewOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fbase f=new fbase();
-                f.setDate(date);
-                f.setName(name);
-                f.setOrdertotal(""+total);
+                fbase f2=new fbase();
+                for(int i=0;i<adpitem.getCount();i++){
+                    f.setDate(date);
+                    f.setName(name);
+                    f.setItem(adpproduct.getItem(i));
+                    f.setPquantity(adpqty.getItem(i));
+                    f.setTotal(adptotal.getItem(i));
+                    firebase.child("orderdetail").child(custkey).child(orderKey).push().setValue(f);
+
+                }
+                double total=0;
+                for(int i=0;i<adptotal.getCount();i++){
+                    total=total+Double.parseDouble(adptotal.getItem(i));
+                }
+                f2.setDate(date);
+                f2.setName(name);
+                f2.setOrdertotal(""+total);
 //                String orderKey=firebase.push().getKey();
-                firebase.child("orders").child(custkey).child(orderKey).setValue(f);
+                firebase.child("orders").child(custkey).child(orderKey).push().setValue(f2);
                 onBackPressed();
             }
         });
