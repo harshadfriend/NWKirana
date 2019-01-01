@@ -33,11 +33,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 public class NewOrder extends AppCompatActivity {
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
 
-    double total;
+    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
     Firebase firebase;
     DatabaseReference dbRef;
+
+    double total;
+
     String[] sP,sR,sQ;
     AutoCompleteTextView actvNOproduct;
     EditText etNOquantity;
@@ -99,7 +101,7 @@ public class NewOrder extends AppCompatActivity {
                 for (com.google.firebase.database.DataSnapshot data:dataSnapshot.getChildren()){
                     //fbase pson = data.getValue(fbase.class);
                     custkey=data.getKey();
-                    Toast.makeText(NewOrder.this, ""+custkey, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(NewOrder.this, ""+custkey, Toast.LENGTH_SHORT).show();
                     Log.d("logd",""+custkey);
                 }
             }
@@ -146,6 +148,7 @@ public class NewOrder extends AppCompatActivity {
             public void onClick(View v) {
                 fbase f=new fbase();
                 f.setDate(date);
+                f.setName(name);
                 String orderKey=firebase.push().getKey();
                 firebase.child("orders").child(custkey).child(orderKey).setValue(f);
 
@@ -155,9 +158,7 @@ public class NewOrder extends AppCompatActivity {
 
     }
 
-    public void actvclick(){
 
-    }
 
     public void fn(){
         for(int i=0;i<sP.length;i++){
@@ -169,7 +170,7 @@ public class NewOrder extends AppCompatActivity {
 
 
 
-     /*   actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actvNOproduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
               //  Toast.makeText(NewOrder.this, "selected", Toast.LENGTH_SHORT).show();
@@ -187,7 +188,7 @@ public class NewOrder extends AppCompatActivity {
                 total=Double.parseDouble(tvNOrate.getText().toString())*Double.parseDouble(etNOquantity.getText().toString());
                 tvNOtotal.setText(""+total);
             }
-        });*/
+        });
 
 
        etNOquantity.addTextChangedListener(new TextWatcher() {
@@ -231,6 +232,8 @@ public class NewOrder extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "test");
 
     }
+
+
 
 
     public static class DatePickerFragment extends DialogFragment
