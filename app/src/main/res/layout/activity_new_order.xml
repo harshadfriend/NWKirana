@@ -20,6 +20,7 @@
         android:layout_height="wrap_content" />
 
     <ListView
+        android:layout_above="@+id/lltitles"
         android:layout_below="@id/tvNOname"
         android:id="@+id/lvorderitemlist"
         android:layout_width="match_parent"

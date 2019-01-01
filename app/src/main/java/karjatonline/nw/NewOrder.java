@@ -45,9 +45,10 @@ public class NewOrder extends AppCompatActivity {
     TextView tvS1;
     TextView tvT1;
 
+    int temp=0;
     //TextView tvNOrate,tvNOtotal,tvNOstock;
     static TextView tvNOname;
-    ArrayAdapter<String> adp;
+    ArrayAdapter<String> adp, listorderitems;
     static String name,date;
     String custkey,orderKey;
     Button btnPlaceOrder,btnAddItem;
@@ -90,6 +91,10 @@ public class NewOrder extends AppCompatActivity {
 
         tvNOname=findViewById(R.id.tvNOname);
 
+        listorderitems=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        listorderitems.setNotifyOnChange(true);
+        lvorderitemlist.setAdapter(listorderitems);
+
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
@@ -109,7 +114,7 @@ public class NewOrder extends AppCompatActivity {
                     Log.d("logd",""+custkey);
                 }
 
-                setlist();
+                //setlist();
             }
 
             @Override
@@ -167,16 +172,21 @@ public class NewOrder extends AppCompatActivity {
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fbase f=new fbase();
+
+                listorderitems.add("Q:"+etQ1.getText().toString()+" "+actvP1.getText().toString());
+                double qt=Double.parseDouble(sQ[temp])-Double.parseDouble(etQ1.getText().toString());
+                sQ[temp]=""+qt;
+                etQ1.setText("1");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
+
+  /*              fbase f=new fbase();
                 f.setDate(date);
                 f.setName(name);
                 f.setItem(actvP1.getText().toString());
                 f.setPquantity(etQ1.getText().toString());
-                orderKey=firebase.push().getKey();
-                firebase.child("orders").child(custkey).child(orderKey).setValue(f);
+                firebase.child("orders").child(custkey).child(orderKey).push().setValue(f);
 
-                etQ1.setText("");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
-//                onBackPressed();
+                etQ1.setText("1");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
+*/
             }
         });
 
@@ -186,7 +196,7 @@ public class NewOrder extends AppCompatActivity {
     }
 
     public void setlist(){
-        Query getitems=dbRef.child("orders").child(custkey).child(orderKey);
+        Query getitems=dbRef.child("orders").child(custkey).child(orderKey).orderByChild("name").equalTo(name);
         getitems.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -224,6 +234,7 @@ public class NewOrder extends AppCompatActivity {
               //  Toast.makeText(NewOrder_old.this, "selected", Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < sP.length ; i++) {
                     if(sP[i].equals(parent.getItemAtPosition(position).toString())){
+                        temp=i;
                         tvR1.setText(sR[i]);
                         tvS1.setText(sQ[i]);
                         //disable setquantity and set quantity as 0
