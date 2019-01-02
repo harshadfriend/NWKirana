@@ -55,7 +55,7 @@ public class OrderDetails extends AppCompatActivity {
                 int i=0;
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
-                    str[i]=(i+1)+". "+f.getItem()+" "+f.getPquantity()+" "+f.getTotal();
+                    str[i]=(i+1)+". "+f.getItem()+" "+f.getPquantity()+"* "+f.getPrate()+" = "+f.getTotal();
                     i++;
                 }
 

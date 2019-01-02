@@ -54,7 +54,7 @@ public class NewOrder extends AppCompatActivity {
     static TextView tvNOname;
     ArrayAdapter<String> adp;
 
-    ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct;
+    ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct,adprate;
 
     static String name,date;
     String custkey,orderKey;
@@ -106,6 +106,8 @@ public class NewOrder extends AppCompatActivity {
         adptotal.setNotifyOnChange(true);
         adpproduct=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         adpproduct.setNotifyOnChange(true);
+        adprate=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adprate.setNotifyOnChange(true);
         lvorderitemlist.setAdapter(adpitem);
 
         Calendar c = Calendar.getInstance();
@@ -177,6 +179,7 @@ public class NewOrder extends AppCompatActivity {
                 for(int i=0;i<adpitem.getCount();i++){
                     f.setDate(date);
                     f.setName(name);
+                    f.setPrate(adprate.getItem(i));
                     f.setItem(adpproduct.getItem(i));
                     f.setPquantity(adpqty.getItem(i));
                     f.setTotal(adptotal.getItem(i));
@@ -226,6 +229,8 @@ public class NewOrder extends AppCompatActivity {
                     adpproduct.add(actvP1.getText().toString());
                     adpqty.add(etQ1.getText().toString());
                     adptotal.add(tvT1.getText().toString());
+                    adprate.add(tvR1.getText().toString());
+
                     int qt = Integer.parseInt(sQ[temp]) - Integer.parseInt(etQ1.getText().toString());
                     sQ[temp] = "" + qt;
                     etQ1.setText("1");
