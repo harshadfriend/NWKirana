@@ -1,6 +1,7 @@
 package karjatonline.nw;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,7 @@ public class CustDetails extends AppCompatActivity {
     Firebase firebase;
     DatabaseReference dbRef;
 
-    TextView tvNameorder;
+    TextView tvNameorder,tvGrandTotal;
     FloatingActionButton fab;
     String name,custkey;
     ListView lvCustDetails;
@@ -34,6 +35,7 @@ public class CustDetails extends AppCompatActivity {
     ArrayAdapter<String> adp,adporderkey;
 
     OrderListadapter oladp;
+    double grandTotal=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,6 @@ public class CustDetails extends AppCompatActivity {
         setTitle("Orders");
 
         Firebase.setAndroidContext(this);
-
         firebase=new Firebase(dburl);
         dbRef = FirebaseDatabase.getInstance().getReference();
 
@@ -60,6 +61,14 @@ public class CustDetails extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        tvNameorder=findViewById(R.id.tvnameorder);
+        tvNameorder.setText(name);
+
+        tvGrandTotal=findViewById(R.id.tvGrandTotal);
+
+        lvCustDetails=findViewById(R.id.lvCustDetails);
+
 
         adporderkey=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         adporderkey.setNotifyOnChange(true);
@@ -84,10 +93,6 @@ public class CustDetails extends AppCompatActivity {
             }
         });
 
-        tvNameorder=findViewById(R.id.tvnameorder);
-        tvNameorder.setText(name);
-
-        lvCustDetails=findViewById(R.id.lvCustDetails);
 
 
 
@@ -114,9 +119,15 @@ public class CustDetails extends AppCompatActivity {
                     str[i][j]=f.getOrdertotal();
                     j=0;
 
+                    //grand total of all order amounts
+                    grandTotal=grandTotal+Double.parseDouble(f.getOrdertotal());
+
                     i++;
                 }
 
+                //setting grandtotal value in textview
+                tvGrandTotal.setText(""+grandTotal+"/-Rs.");
+                tvGrandTotal.setTypeface(Typeface.DEFAULT_BOLD);
 //                adp=new ArrayAdapter<>(CustDetails.this,android.R.layout.simple_list_item_1,str);
 //                adp.setNotifyOnChange(true);
                 oladp=new OrderListadapter(CustDetails.this,R.layout.order_list_adapter,str);

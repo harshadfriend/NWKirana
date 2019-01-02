@@ -94,7 +94,8 @@ public class EditProductDialog extends AppCompatActivity {
                     q=q+Integer.parseInt(etQuantity.getText().toString());
 
                     Map<String, Object> taskMap = new HashMap<String, Object>();
-                    taskMap.put("pname", etEUDname.getText().toString().toUpperCase());
+//                    taskMap.put("pname", etEUDname.getText().toString().toUpperCase());
+                    taskMap.put("pname", etEUDname.getText().toString());
                     taskMap.put("prate", etEUDrate.getText().toString());
                     taskMap.put("pquantity", String.valueOf(q));
                     firebase.child("product").child(custkey).updateChildren(taskMap);

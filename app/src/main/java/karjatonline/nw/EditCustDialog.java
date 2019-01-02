@@ -83,7 +83,8 @@ public class EditCustDialog extends AppCompatActivity {
                         !etEUDphone.getText().toString().isEmpty()) {
 
                     Map<String, Object> taskMap = new HashMap<String, Object>();
-                    taskMap.put("name", etEUDname.getText().toString().toUpperCase());
+//                    taskMap.put("name", etEUDname.getText().toString().toUpperCase());
+                    taskMap.put("name", etEUDname.getText().toString());
                     taskMap.put("city", etEUDadd.getText().toString());
                     taskMap.put("mobile", etEUDphone.getText().toString());
                     firebase.child("cust").child(custkey).updateChildren(taskMap);
