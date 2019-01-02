@@ -28,6 +28,8 @@ public class OrderDetails extends AppCompatActivity {
 
     String name,orderkey,custkey;
 
+    OrderDetailadapter odadp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,7 @@ public class OrderDetails extends AppCompatActivity {
                 int i=0;
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
-                    str[i]=i+". "+f.getItem()+" "+f.getPquantity()+" "+f.getTotal();
+                    str[i]=(i+1)+". "+f.getItem()+" "+f.getPquantity()+" "+f.getTotal();
                     i++;
                 }
 
@@ -73,7 +75,7 @@ public class OrderDetails extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 fbase f=dataSnapshot.getValue(fbase.class);
-                tvODtotal.setText(f.getOrdertotal());
+                tvODtotal.setText("Grand Total=Rs. "+f.getOrdertotal()+"/-");
             }
 
             @Override

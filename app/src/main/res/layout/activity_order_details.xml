@@ -13,6 +13,8 @@
         android:layout_height="match_parent"/>
 
     <TextView
+        android:background="@drawable/greenbutton"
+        android:textColor="#fff"
         android:id="@+id/tvODtotal"
         android:gravity="center"
         android:layout_alignParentBottom="true"
