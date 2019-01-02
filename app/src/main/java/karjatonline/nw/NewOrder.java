@@ -76,9 +76,9 @@ public class NewOrder extends AppCompatActivity {
         name=extras.getString("name");
 
         Firebase.setAndroidContext(this);
-
         firebase=new Firebase(dburl);
         dbRef = FirebaseDatabase.getInstance().getReference();
+
         orderKey=firebase.push().getKey();
 
         lvorderitemlist=findViewById(R.id.lvorderitemlist);

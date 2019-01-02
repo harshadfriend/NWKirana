@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ public class CustDetails extends AppCompatActivity {
     String name,custkey;
     ListView lvCustDetails;
 
-    ArrayAdapter<String> adp;
+    ArrayAdapter<String> adp,adporderkey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,9 @@ public class CustDetails extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        adporderkey=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adporderkey.setNotifyOnChange(true);
 
         com.google.firebase.database.Query k=dbRef.child("cust").orderByChild("name").equalTo(name);
         k.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
@@ -100,6 +104,7 @@ public class CustDetails extends AppCompatActivity {
                     fbase f=data.getValue(fbase.class);
                     Log.d("custorders", data.getKey()+" "+f.getDate());
 //                    str[i]=data.getKey();
+                    adporderkey.add(data.getKey());
                     str[i]=(i+1)+". Date:-"+f.getDate()+" Total="+f.getOrdertotal();
                     i++;
                 }
@@ -115,5 +120,17 @@ public class CustDetails extends AppCompatActivity {
 
             }
         });
+
+        lvCustDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i=new Intent(getApplicationContext(),OrderDetails.class);
+                i.putExtra("name",name);
+                i.putExtra("orderkey",adporderkey.getItem(position));
+                i.putExtra("custkey",custkey);
+                startActivity(i);
+            }
+        });
+
     }
 }
