@@ -342,6 +342,27 @@ public class NewOrder extends AppCompatActivity {
             }
         });
 
+        actvP1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().length()<1){
+                    btnAddItem.setEnabled(false);
+                }
+                else {
+                    btnAddItem.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
        etQ1.addTextChangedListener(new TextWatcher() {
            @Override
@@ -354,12 +375,14 @@ public class NewOrder extends AppCompatActivity {
 
             //   Toast.makeText(NewOrder_old.this, "editor", Toast.LENGTH_SHORT).show();
                if(s.toString().length()>0){
+                   btnAddItem.setEnabled(true);
                    total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
                    tvT1.setText(""+total);
                    fbase f=new fbase();
 
                }
                else {
+                   btnAddItem.setEnabled(false);
                    tvT1.setText("0");
                }
 

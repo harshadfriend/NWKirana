@@ -33,6 +33,8 @@ public class CustDetails extends AppCompatActivity {
 
     ArrayAdapter<String> adp,adporderkey;
 
+    OrderListadapter oladp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,20 +100,29 @@ public class CustDetails extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
-                int i=0;
+//                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
+                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][3];
+                int i=0,j=0;
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
                     Log.d("custorders", data.getKey()+" "+f.getDate());
 //                    str[i]=data.getKey();
                     adporderkey.add(data.getKey());
-                    str[i]=(i+1)+". Date:-"+f.getDate()+" Total="+f.getOrdertotal();
+//                    str[i]=(i+1)+". Date:-"+f.getDate()+" Total="+f.getOrdertotal();
+                    str[i][j]=f.getDate();
+                    j++;
+                    str[i][j]=f.getOrdertotal();
+                    j=0;
+
                     i++;
                 }
 
-                adp=new ArrayAdapter<>(CustDetails.this,android.R.layout.simple_list_item_1,str);
-                lvCustDetails.setAdapter(adp);
-                adp.setNotifyOnChange(true);
+//                adp=new ArrayAdapter<>(CustDetails.this,android.R.layout.simple_list_item_1,str);
+//                adp.setNotifyOnChange(true);
+                oladp=new OrderListadapter(CustDetails.this,R.layout.order_list_adapter,str);
+                oladp.setNotifyOnChange(true);
+                lvCustDetails.setAdapter(oladp);
+
 
             }
 
