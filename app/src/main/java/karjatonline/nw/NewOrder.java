@@ -1,8 +1,10 @@
 package karjatonline.nw;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -85,6 +87,7 @@ public class NewOrder extends AppCompatActivity {
 
         btnPlaceOrder=findViewById(R.id.btnPlaceOrder);
         btnAddItem=findViewById(R.id.btnAddItem);
+        btnAddItem.setEnabled(false);
 
         actvP1=findViewById(R.id.etp1);
 
@@ -174,48 +177,65 @@ public class NewOrder extends AppCompatActivity {
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fbase f=new fbase();
-                fbase f2=new fbase();
-                for(int i=0;i<adpitem.getCount();i++){
-                    f.setDate(date);
-                    f.setName(name);
-                    f.setPrate(adprate.getItem(i));
-                    f.setItem(adpproduct.getItem(i));
-                    f.setPquantity(adpqty.getItem(i));
-                    f.setTotal(adptotal.getItem(i));
-                    firebase.child("orderdetail").child(custkey).child(orderKey).push().setValue(f);
 
-                }
-                double total=0;
-                for(int i=0;i<adptotal.getCount();i++){
-                    total=total+Double.parseDouble(adptotal.getItem(i));
-                }
-                f2.setDate(date);
-                f2.setName(name);
-                f2.setOrdertotal(""+total);
+                new AlertDialog.Builder(NewOrder.this)
+                        .setTitle("Confirm !")
+                        .setMessage("Place the order ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                fbase f=new fbase();
+                                fbase f2=new fbase();
+                                for(int i=0;i<adpitem.getCount();i++){
+                                    f.setDate(date);
+                                    f.setName(name);
+                                    f.setPrate(adprate.getItem(i));
+                                    f.setItem(adpproduct.getItem(i));
+                                    f.setPquantity(adpqty.getItem(i));
+                                    f.setTotal(adptotal.getItem(i));
+                                    firebase.child("orderdetail").child(custkey).child(orderKey).push().setValue(f);
+
+                                }
+                                double total=0;
+                                for(int i=0;i<adptotal.getCount();i++){
+                                    total=total+Double.parseDouble(adptotal.getItem(i));
+                                }
+                                f2.setDate(date);
+                                f2.setName(name);
+                                f2.setOrdertotal(""+total);
 //                String orderKey=firebase.push().getKey();
-                firebase.child("orders").child(custkey).child(orderKey).setValue(f2);
+                                firebase.child("orders").child(custkey).child(orderKey).setValue(f2);
 
-                Query q=dbRef.child("product");
-                q.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String productkey="";int i=0;
-                        for(DataSnapshot data:dataSnapshot.getChildren()){
-                            productkey=data.getKey();
-                            Map<String, Object> taskMap = new HashMap<String, Object>();
-                            taskMap.put("pquantity",sQ[i] );
-                            firebase.child("product").child(productkey).updateChildren(taskMap);
-                            i++;
-                        }
-                    }
+                                Query q=dbRef.child("product");
+                                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        String productkey="";int i=0;
+                                        for(DataSnapshot data:dataSnapshot.getChildren()){
+                                            productkey=data.getKey();
+                                            Map<String, Object> taskMap = new HashMap<String, Object>();
+                                            taskMap.put("pquantity",sQ[i] );
+                                            firebase.child("product").child(productkey).updateChildren(taskMap);
+                                            i++;
+                                        }
+                                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
-                onBackPressed();
+                                    }
+                                });
+                                onBackPressed();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+
+
             }
         });
 
@@ -238,6 +258,7 @@ public class NewOrder extends AppCompatActivity {
                     tvS1.setText("");
                     actvP1.setText("");
                     tvT1.setText("0");
+                    btnAddItem.setEnabled(false);
                 }
                 else{
                     Toast.makeText(NewOrder.this, "Entered Quantity is more than stock !", Toast.LENGTH_SHORT).show();
@@ -301,6 +322,7 @@ public class NewOrder extends AppCompatActivity {
                         temp=i;
                         tvR1.setText(sR[i]);
                         tvS1.setText(sQ[i]);
+                        btnAddItem.setEnabled(true);
                        // Toast.makeText(NewOrder.this, ""+sQ[i], Toast.LENGTH_SHORT).show();
                         //disable setquantity and set quantity as 0
                         if (sQ[i].equals("0")){
