@@ -32,9 +32,11 @@ public class OrderDetailadapter extends ArrayAdapter{
     }
 
     static class myHolder {
-        TextView tvPname;
-        TextView tvPrate;
-        TextView tvPstock;
+        TextView tvODAname;
+        TextView tvODArate;
+        TextView tvODAqty;
+        TextView tvODAtotal;
+        TextView tvODASrNo;
     }
 
     @Override
@@ -46,12 +48,11 @@ public class OrderDetailadapter extends ArrayAdapter{
             convertView = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new myHolder();
-            holder.tvPname=convertView.findViewById(R.id.tvPname);
-            holder.tvPrate=convertView.findViewById(R.id.tvPrate);
-
-            holder.tvPstock=convertView.findViewById(R.id.tvPstock);
-
-
+            holder.tvODASrNo=convertView.findViewById(R.id.tvODASrNo);
+            holder.tvODAname=convertView.findViewById(R.id.tvODAPname);
+            holder.tvODArate=convertView.findViewById(R.id.tvODAPrate);
+            holder.tvODAqty=convertView.findViewById(R.id.tvODAqty);
+            holder.tvODAtotal=convertView.findViewById(R.id.tvODAtotal);
 
             convertView.setTag(holder);
 
@@ -64,16 +65,15 @@ public class OrderDetailadapter extends ArrayAdapter{
 
         Log.d("logg","date"+data[position][0]);
 
-        holder.tvPstock.setTypeface(Typeface.DEFAULT_BOLD);
-        holder.tvPrate.setTypeface(Typeface.DEFAULT_BOLD);
-        holder.tvPname.setTypeface(Typeface.DEFAULT_BOLD);
+//        holder.tvPstock.setTypeface(Typeface.DEFAULT_BOLD);
+//        holder.tvPrate.setTypeface(Typeface.DEFAULT_BOLD);
+//        holder.tvPname.setTypeface(Typeface.DEFAULT_BOLD);
 
-        holder.tvPname.setText(" "+data[position][0]);
-        holder.tvPrate.setText(" "+data[position][1]);
-        holder.tvPstock.setText(data[position][2]);
-
-
-
+        holder.tvODASrNo.setText(""+(position+1));
+        holder.tvODAname.setText(" "+data[position][0]);
+        holder.tvODArate.setText(" "+data[position][1]);
+        holder.tvODAqty.setText(data[position][2]);
+        holder.tvODAtotal.setText(data[position][3]+"/-");
 
         return convertView;
     }

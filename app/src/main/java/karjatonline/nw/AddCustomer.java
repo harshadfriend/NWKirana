@@ -21,7 +21,6 @@ public class AddCustomer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customer);
 
-
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);
 
@@ -41,7 +40,8 @@ public class AddCustomer extends AppCompatActivity {
 
                 if(!etname.getText().toString().isEmpty() && !etcity.getText().toString().isEmpty() && !etmobile.getText().toString().isEmpty()) {
                     fb.setcity(etcity.getText().toString());
-                    fb.setName(etname.getText().toString().toUpperCase());
+//                    fb.setName(etname.getText().toString().toUpperCase());
+                    fb.setName(etname.getText().toString());
                     fb.setmobile(etmobile.getText().toString());
 
                     fb2.setName(etname.getText().toString());
@@ -49,7 +49,6 @@ public class AddCustomer extends AppCompatActivity {
                     firebase.child("cust").push().setValue(fb);
                     //firebase.child("orders").child(etname.getText().toString());
 //                    firebase.child("transactions").child(etname.getText().toString());
-
 
                     Toast.makeText(AddCustomer.this, "Success", Toast.LENGTH_SHORT).show();
                     onBackPressed();

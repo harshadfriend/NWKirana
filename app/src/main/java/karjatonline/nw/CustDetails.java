@@ -126,6 +126,7 @@ public class CustDetails extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i=new Intent(getApplicationContext(),OrderDetails.class);
                 i.putExtra("name",name);
+                i.putExtra("orderno",""+(position+1));
                 i.putExtra("orderkey",adporderkey.getItem(position));
                 i.putExtra("custkey",custkey);
                 startActivity(i);

@@ -41,7 +41,8 @@ public class AddProduct extends AppCompatActivity {
 
                 if(!etPname.getText().toString().isEmpty() && !etPquantity.getText().toString().isEmpty() && !etPrate.getText().toString().isEmpty()) {
                     fb.setPquantity(etPquantity.getText().toString());
-                    fb.setPname(etPname.getText().toString().toUpperCase());
+//                    fb.setPname(etPname.getText().toString().toUpperCase());
+                    fb.setPname(etPname.getText().toString());
                     fb.setPrate(etPrate.getText().toString());
 
                     fb2.setPquantity(etPquantity.getText().toString());
