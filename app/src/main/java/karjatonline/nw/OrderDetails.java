@@ -48,7 +48,7 @@ public class OrderDetails extends AppCompatActivity {
         orderno=extras.getString("orderno");
         custkey=extras.getString("custkey");
 
-        setTitle("Order No."+orderno+" :"+name );
+        setTitle("Order No."+orderno+" :-"+name );
 
         Query q=dbRef.child("orderdetail").child(custkey).child(orderkey);
         q.addListenerForSingleValueEvent(new ValueEventListener() {
