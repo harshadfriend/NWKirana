@@ -20,10 +20,10 @@ public class NewOrderListadapter extends ArrayAdapter{
     String[][] data=null;
 
     int index=0;
-    //List<string_item> data=null;
+    ArrayAdapter<String> data1;
 
     public NewOrderListadapter(Context context, int resource, String[][] objects) {
-        //public myadapter(Context context, int resource, List<string_item> objects) {
+//        public NewOrderListadapter(Context context, int resource, ArrayAdapter<String> objects) {
 //        super(context, resource, objects);
         super(context,resource,objects);
         this.context = context;
@@ -76,22 +76,21 @@ public class NewOrderListadapter extends ArrayAdapter{
         holder.tvNODAtotal.setText(data[position][3]+"/-");
         index=Integer.parseInt(data[position][4]);
 
-        holder.tvNODAdeleteItem.setOnClickListener(new View.OnClickListener() {
+        /*holder.tvNODAdeleteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int qt = Integer.parseInt(NewOrder.sQ[index]) + Integer.parseInt(data[position][2]);
                 NewOrder.sQ[index]=String.valueOf(qt);
 
-                NewOrder.adpproduct.remove(NewOrder.adpproduct.getItem(index));
-                NewOrder.adpqty.remove(NewOrder.adpqty.getItem(index));
-                NewOrder.adptotal.remove(NewOrder.adptotal.getItem(index));
-                NewOrder.adprate.remove(NewOrder.adprate.getItem(index));
-                NewOrder.adpindex.remove(NewOrder.adpindex.getItem(index));
-                NewOrder.adpitem.remove(NewOrder.adpitem.getItem(index));
+                 NewOrder.adpproduct.remove(NewOrder.adpproduct.getItem(position));
+                NewOrder.adpqty.remove(NewOrder.adpqty.getItem(position));
+                NewOrder.adptotal.remove(NewOrder.adptotal.getItem(position));
+                NewOrder.adprate.remove(NewOrder.adprate.getItem(position));
+                NewOrder.adpindex.remove(NewOrder.adpindex.getItem(position));
+                NewOrder.adpitem.remove(NewOrder.adpitem.getItem(position));
 
             }
-        });
-
+        });*/
         return convertView;
     }
 }

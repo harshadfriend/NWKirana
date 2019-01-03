@@ -68,11 +68,14 @@ public class NewOrder extends AppCompatActivity {
 
     ListView lvorderitemlist;
 
+    String[] s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
+
+        s=new String[5];
 
         setTitle("New Order");
 
@@ -116,12 +119,34 @@ public class NewOrder extends AppCompatActivity {
         adpindex=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         adpindex.setNotifyOnChange(true);
 
+
         //lvorderitemlist.setAdapter(adpitem);
 
         lvorderitemlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int qt = Integer.parseInt(sQ[Integer.parseInt(adpindex.getItem(position))]) + Integer.parseInt(adpqty.getItem(position));
+                sQ[Integer.parseInt(adpindex.getItem(position))]=String.valueOf(qt);
 
+                adpproduct.remove(adpproduct.getItem(position));
+                adpqty.remove(adpqty.getItem(position));
+                adptotal.remove(adptotal.getItem(position));
+                adprate.remove(adprate.getItem(position));
+                adpindex.remove(adpindex.getItem(position));
+                adpitem.remove(adpitem.getItem(position));
+
+                String[][] str=new String[adpitem.getCount()][5];
+                for(int i=0;i<adpitem.getCount();i++){
+                    str[i][0]=adpproduct.getItem(i);
+                    str[i][1]=adprate.getItem(i);
+                    str[i][2]=adpqty.getItem(i);
+                    str[i][3]=adptotal.getItem(i);
+                    str[i][4]=adpindex.getItem(i);
+                }
+
+                noadp=new NewOrderListadapter(NewOrder.this,R.layout.neworder_list_adapter,str);
+                noadp.setNotifyOnChange(true);
+//                lvorderitemlist.setAdapter(noadp);
             }
 
         });
@@ -290,6 +315,7 @@ public class NewOrder extends AppCompatActivity {
 
                 etQ1.setText("1");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
 */
+
                 String[][] str=new String[adpitem.getCount()][5];
                 for(int i=0;i<adpitem.getCount();i++){
                     str[i][0]=adpproduct.getItem(i);
@@ -298,9 +324,12 @@ public class NewOrder extends AppCompatActivity {
                     str[i][3]=adptotal.getItem(i);
                     str[i][4]=adpindex.getItem(i);
                 }
+
                 noadp=new NewOrderListadapter(NewOrder.this,R.layout.neworder_list_adapter,str);
+
                 noadp.setNotifyOnChange(true);
                 lvorderitemlist.setAdapter(noadp);
+
             }
         });
 
@@ -308,6 +337,7 @@ public class NewOrder extends AppCompatActivity {
 
 
     }
+
 
     public void setlist(){
         Query getitems=dbRef.child("orders").child(custkey).child(orderKey).orderByChild("name").equalTo(name);

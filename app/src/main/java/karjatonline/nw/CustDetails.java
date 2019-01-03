@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -74,7 +75,7 @@ public class CustDetails extends AppCompatActivity {
         adporderkey.setNotifyOnChange(true);
 
         com.google.firebase.database.Query k=dbRef.child("cust").orderByChild("name").equalTo(name);
-        k.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+        k.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(@NonNull com.google.firebase.database.DataSnapshot dataSnapshot) {
                 for (com.google.firebase.database.DataSnapshot data:dataSnapshot.getChildren()){
@@ -108,7 +109,9 @@ public class CustDetails extends AppCompatActivity {
 //                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
                 String[][] str=new String[(int)dataSnapshot.getChildrenCount()][3];
                 int i=0,j=0;
+                adporderkey.clear();
                 for(DataSnapshot data:dataSnapshot.getChildren()){
+
                     fbase f=data.getValue(fbase.class);
                     Log.d("custorders", data.getKey()+" "+f.getDate());
 //                    str[i]=data.getKey();
@@ -147,6 +150,7 @@ public class CustDetails extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i=new Intent(getApplicationContext(),OrderDetails.class);
+                //Toast.makeText(CustDetails.this, ""+position, Toast.LENGTH_SHORT).show();
                 i.putExtra("name",name);
                 i.putExtra("orderno",""+(position+1));
                 i.putExtra("orderkey",adporderkey.getItem(position));

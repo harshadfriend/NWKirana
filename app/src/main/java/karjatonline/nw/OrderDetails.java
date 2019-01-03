@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +48,8 @@ public class OrderDetails extends AppCompatActivity {
         orderkey=extras.getString("orderkey");
         orderno=extras.getString("orderno");
         custkey=extras.getString("custkey");
+
+      //  Toast.makeText(this, ""+orderkey, Toast.LENGTH_SHORT).show();
 
         setTitle("Order No."+orderno+" :-"+name );
 
