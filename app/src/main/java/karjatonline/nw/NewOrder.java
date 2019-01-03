@@ -146,7 +146,7 @@ public class NewOrder extends AppCompatActivity {
 
                 noadp=new NewOrderListadapter(NewOrder.this,R.layout.neworder_list_adapter,str);
                 noadp.setNotifyOnChange(true);
-//                lvorderitemlist.setAdapter(noadp);
+                lvorderitemlist.setAdapter(noadp);
             }
 
         });
@@ -329,6 +329,7 @@ public class NewOrder extends AppCompatActivity {
 
                 noadp.setNotifyOnChange(true);
                 lvorderitemlist.setAdapter(noadp);
+                actvP1.requestFocus();
 
             }
         });
