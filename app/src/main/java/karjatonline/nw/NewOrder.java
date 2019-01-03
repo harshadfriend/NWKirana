@@ -56,7 +56,9 @@ public class NewOrder extends AppCompatActivity {
     static TextView tvNOname;
     ArrayAdapter<String> adp;
 
-    ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct,adprate;
+    NewOrderListadapter noadp;
+
+    ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct,adprate,adpindex;
 
     static String name,date;
     String custkey,orderKey;
@@ -111,7 +113,20 @@ public class NewOrder extends AppCompatActivity {
         adpproduct.setNotifyOnChange(true);
         adprate=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         adprate.setNotifyOnChange(true);
-        lvorderitemlist.setAdapter(adpitem);
+        adpindex=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        adpindex.setNotifyOnChange(true);
+
+        //lvorderitemlist.setAdapter(adpitem);
+
+        lvorderitemlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+        });
+
+
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -250,6 +265,7 @@ public class NewOrder extends AppCompatActivity {
                     adpqty.add(etQ1.getText().toString());
                     adptotal.add(tvT1.getText().toString());
                     adprate.add(tvR1.getText().toString());
+                    adpindex.add(""+temp);
 
                     int qt = Integer.parseInt(sQ[temp]) - Integer.parseInt(etQ1.getText().toString());
                     sQ[temp] = "" + qt;
@@ -257,12 +273,14 @@ public class NewOrder extends AppCompatActivity {
                     tvR1.setText("");
                     tvS1.setText("");
                     actvP1.setText("");
+
                     tvT1.setText("0");
                     btnAddItem.setEnabled(false);
                 }
                 else{
                     Toast.makeText(NewOrder.this, "Entered Quantity is more than stock !", Toast.LENGTH_SHORT).show();
                 }
+
   /*              fbase f=new fbase();
                 f.setDate(date);
                 f.setName(name);
@@ -272,6 +290,17 @@ public class NewOrder extends AppCompatActivity {
 
                 etQ1.setText("1");tvR1.setText("");tvS1.setText("");actvP1.setText("");tvT1.setText("0");
 */
+                String[][] str=new String[adpitem.getCount()][5];
+                for(int i=0;i<adpitem.getCount();i++){
+                    str[i][0]=adpproduct.getItem(i);
+                    str[i][1]=adprate.getItem(i);
+                    str[i][2]=adpqty.getItem(i);
+                    str[i][3]=adptotal.getItem(i);
+                    str[i][4]=adpindex.getItem(i);
+                }
+                noadp=new NewOrderListadapter(NewOrder.this,R.layout.neworder_list_adapter,str);
+                noadp.setNotifyOnChange(true);
+                lvorderitemlist.setAdapter(adpitem);
             }
         });
 
