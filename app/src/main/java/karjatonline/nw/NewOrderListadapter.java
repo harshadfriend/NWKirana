@@ -19,6 +19,7 @@ public class NewOrderListadapter extends ArrayAdapter{
     int layoutResourceId;
     String[][] data=null;
 
+    int index=0;
     //List<string_item> data=null;
 
     public NewOrderListadapter(Context context, int resource, String[][] objects) {
@@ -37,13 +38,14 @@ public class NewOrderListadapter extends ArrayAdapter{
         TextView tvNODAtotal;
         TextView tvNODASrNo;
         TextView tvNODAdeleteItem;
-        int index=0;
+
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         myHolder holder = null;
+
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             convertView = inflater.inflate(layoutResourceId, parent, false);
@@ -62,8 +64,6 @@ public class NewOrderListadapter extends ArrayAdapter{
             holder = (myHolder) convertView.getTag();
         }
 
-
-
         Log.d("logg","date"+data[position][0]);
 
 //        holder.tvPstock.setTypeface(Typeface.DEFAULT_BOLD);
@@ -74,11 +74,20 @@ public class NewOrderListadapter extends ArrayAdapter{
         holder.tvNODAname.setText(" "+data[position][0]);
         holder.tvNODArtNqt.setText(data[position][1]+"*"+data[position][2]);
         holder.tvNODAtotal.setText(data[position][3]+"/-");
-        holder.index=Integer.parseInt(data[position][4]);
+        index=Integer.parseInt(data[position][4]);
 
         holder.tvNODAdeleteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int qt = Integer.parseInt(NewOrder.sQ[index]) + Integer.parseInt(data[position][2]);
+                NewOrder.sQ[index]=String.valueOf(qt);
+
+                NewOrder.adpproduct.remove(NewOrder.adpproduct.getItem(index));
+                NewOrder.adpqty.remove(NewOrder.adpqty.getItem(index));
+                NewOrder.adptotal.remove(NewOrder.adptotal.getItem(index));
+                NewOrder.adprate.remove(NewOrder.adprate.getItem(index));
+                NewOrder.adpindex.remove(NewOrder.adpindex.getItem(index));
+                NewOrder.adpitem.remove(NewOrder.adpitem.getItem(index));
 
             }
         });

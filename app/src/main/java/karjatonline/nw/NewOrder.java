@@ -44,7 +44,7 @@ public class NewOrder extends AppCompatActivity {
 
     double total=0;
 
-    String[] sP,sR,sQ;
+    static String[] sP,sR,sQ;
     AutoCompleteTextView actvP1;
     EditText etQ1;
     TextView tvR1;
@@ -58,7 +58,7 @@ public class NewOrder extends AppCompatActivity {
 
     NewOrderListadapter noadp;
 
-    ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct,adprate,adpindex;
+    static ArrayAdapter<String> adpitem,adpqty,adptotal,adpproduct,adprate,adpindex;
 
     static String name,date;
     String custkey,orderKey;
