@@ -150,6 +150,7 @@
 
     <TextView
         android:layout_above="@id/space"
+        android:padding="5dp"
         android:textColor="#fff"
         android:background="@drawable/greenbutton"
         android:id="@+id/tvGrandTotal"
