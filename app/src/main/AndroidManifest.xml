@@ -29,7 +29,8 @@
         <activity android:name=".NewOrder_old" />
         <activity android:name=".NewOrder" />
         <activity android:name=".OrderDetails" />
-        <activity android:name=".transactions"></activity>
+        <activity android:name=".transactions" />
+        <activity android:name=".NewTransaction"></activity>
     </application>
 
 </manifest>
