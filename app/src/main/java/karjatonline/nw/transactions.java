@@ -1,12 +1,16 @@
 package karjatonline.nw;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +35,7 @@ public class transactions extends AppCompatActivity {
     TextView tvName,tvTransTotal;
     ListView lvTransaction;
     double total=0;
+    ArrayAdapter<String> adpkey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,11 @@ public class transactions extends AppCompatActivity {
 
         tvTransTotal=findViewById(R.id.tvTransTotal);
         tvTransTotal.setText(""+total);
+        tvTransTotal.setTypeface(Typeface.DEFAULT_BOLD);
+
+        //array adapter for keys
+        adpkey=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        adpkey.setNotifyOnChange(true);
 
         fabNewTrans=findViewById(R.id.fabNewTransaction);
         fabNewTrans.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +79,31 @@ public class transactions extends AppCompatActivity {
 
         lvTransaction=findViewById(R.id.lvTransaction);
 
+        //for deleting credit entry
+        lvTransaction.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int pos=position;
+                new AlertDialog.Builder(transactions.this).setTitle("Delete ?")
+                        .setMessage("Delete selected transaction ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                firebase.child("transactions").child(custkey).child(adpkey.getItem(pos)).removeValue();
+                                Toast.makeText(transactions.this, "Successfully deleted !", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+
+            }
+        });
+
+
         Query q=dbRef.child("transactions").child(custkey);
         q.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,17 +111,20 @@ public class transactions extends AppCompatActivity {
                 String[] str=new String[(int)dataSnapshot.getChildrenCount()];
                 int i=0;
                 total=0;
+                adpkey.clear();
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
                     Log.d("logtrans",f.getDate()+" "+f.getAmount());
                     str[i]=(i+1)+". Date: "+f.getDate()+",  Amount: "+f.getAmount()+"/-";
                     i++;
+                    //add key to adpkey
+                    adpkey.add(data.getKey());
                     total=total+Double.parseDouble(f.getAmount());
                 }
                 ArrayAdapter<String> adp=new ArrayAdapter<>(transactions.this,android.R.layout.simple_list_item_1,str);
                 adp.setNotifyOnChange(true);
                 lvTransaction.setAdapter(adp);
-                tvTransTotal.setText(""+total);
+                tvTransTotal.setText("Total: "+total+"/-");
             }
 
             @Override

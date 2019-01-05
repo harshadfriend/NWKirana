@@ -47,6 +47,7 @@
     <EditText
         android:id="@+id/etAmount"
         android:textSize="25dp"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
