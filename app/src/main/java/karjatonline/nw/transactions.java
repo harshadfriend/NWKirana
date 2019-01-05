@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +28,9 @@ public class transactions extends AppCompatActivity {
     FloatingActionButton fabNewTrans;
     String name,custkey;
 
-    TextView tvName;
+    TextView tvName,tvTransTotal;
     ListView lvTransaction;
+    double total=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class transactions extends AppCompatActivity {
         tvName=findViewById(R.id.tvnameTransaction);
         tvName.setText(name);
 
+        tvTransTotal=findViewById(R.id.tvTransTotal);
+        tvTransTotal.setText(""+total);
+
         fabNewTrans=findViewById(R.id.fabNewTransaction);
         fabNewTrans.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +73,20 @@ public class transactions extends AppCompatActivity {
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
+                int i=0;
+                total=0;
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+                    fbase f=data.getValue(fbase.class);
+                    Log.d("logtrans",f.getDate()+" "+f.getAmount());
+                    str[i]=(i+1)+". Date: "+f.getDate()+",  Amount: "+f.getAmount()+"/-";
+                    i++;
+                    total=total+Double.parseDouble(f.getAmount());
+                }
+                ArrayAdapter<String> adp=new ArrayAdapter<>(transactions.this,android.R.layout.simple_list_item_1,str);
+                adp.setNotifyOnChange(true);
+                lvTransaction.setAdapter(adp);
+                tvTransTotal.setText(""+total);
             }
 
             @Override

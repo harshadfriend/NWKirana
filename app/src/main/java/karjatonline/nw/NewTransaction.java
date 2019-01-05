@@ -54,6 +54,14 @@ public class NewTransaction extends AppCompatActivity {
 
         etAmount=findViewById(R.id.etAmount);
 
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        date=day+"/"+(month+1)+"/"+year;
+        tvDate.setText(date);
+
         btnCredit=findViewById(R.id.btnCredit);
         btnCredit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +70,8 @@ public class NewTransaction extends AppCompatActivity {
                 f.setAmount(etAmount.getText().toString());
                 f.setDate(tvDate.getText().toString());
                 firebase.child("transactions").child(custkey).push().setValue(f);
+                Toast.makeText(NewTransaction.this, "Success !", Toast.LENGTH_SHORT).show();
+                onBackPressed();
             }
         });
 
@@ -75,7 +85,7 @@ public class NewTransaction extends AppCompatActivity {
 
     public void showDatePickerDialog(View v) {
         // Toast.makeText(this, "datepicker touched", Toast.LENGTH_SHORT).show();
-        DialogFragment newFragment = new NewOrder.DatePickerFragment();
+        DialogFragment newFragment = new NewTransaction.DatePickerFragment();
         newFragment.show(getFragmentManager(), "test");
 
     }
@@ -99,7 +109,7 @@ public class NewTransaction extends AppCompatActivity {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
-            NewOrder.setDate(day,(month+1),year);
+            NewTransaction.setDate(day,(month+1),year);
         }
     }
 }

@@ -36,14 +36,14 @@ public class CustDetails extends AppCompatActivity {
     ArrayAdapter<String> adp,adporderkey;
 
     OrderListadapter oladp;
-    double grandTotal=0;
+    double grandTotal=0,transtotal=0,balance=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_details);
 
-        setTitle("Orders");
+
 
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);
@@ -53,6 +53,7 @@ public class CustDetails extends AppCompatActivity {
         name=extras.getString("name");
         //custkey=extras.getString("custkey");
 
+        setTitle("Orders: "+name);
         fab=findViewById(R.id.fabNewOrder);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +65,7 @@ public class CustDetails extends AppCompatActivity {
         });
 
         tvNameorder=findViewById(R.id.tvnameorder);
-        tvNameorder.setText(name);
+//        tvNameorder.setText(name);
 
         tvGrandTotal=findViewById(R.id.tvGrandTotal);
 
@@ -87,6 +88,7 @@ public class CustDetails extends AppCompatActivity {
 
             }
         });
+
 
         com.google.firebase.database.Query k=dbRef.child("cust").orderByChild("name").equalTo(name);
         k.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
@@ -115,11 +117,38 @@ public class CustDetails extends AppCompatActivity {
     }
 
     public void fn(){
+
+        //balance total
+        Query b=dbRef.child("transactions").child(custkey);
+        b.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                transtotal=0;balance=0;
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+                    fbase f=data.getValue(fbase.class);
+                    Log.d("logtrans",f.getDate()+" "+f.getAmount());
+                    transtotal=transtotal+Double.parseDouble(f.getAmount());
+                }
+                balance=grandTotal-transtotal;
+                tvGrandTotal.setText("Balance:  "+balance+"/-Rs.");
+                tvNameorder.setText("Total:"+grandTotal+"/- , Credit:"+transtotal+"/-");
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //get order details
         Query q=dbRef.child("orders").child(custkey);
         q.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                grandTotal=0;balance=0;
 //                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
                 String[][] str=new String[(int)dataSnapshot.getChildrenCount()][3];
                 int i=0,j=0;
@@ -142,8 +171,11 @@ public class CustDetails extends AppCompatActivity {
                     i++;
                 }
 
+                balance=grandTotal-transtotal;
+                tvNameorder.setText("Total:"+grandTotal+"/- , Credit:"+transtotal+"/-");
                 //setting grandtotal value in textview
-                tvGrandTotal.setText(""+grandTotal+"/-Rs.");
+//                tvGrandTotal.setText(""+grandTotal+"/-Rs.");
+                tvGrandTotal.setText("Balance:  "+balance+"/-Rs.");
                 tvGrandTotal.setTypeface(Typeface.DEFAULT_BOLD);
 //                adp=new ArrayAdapter<>(CustDetails.this,android.R.layout.simple_list_item_1,str);
 //                adp.setNotifyOnChange(true);
