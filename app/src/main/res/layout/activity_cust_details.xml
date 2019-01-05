@@ -149,23 +149,28 @@
         </LinearLayout>
 
     <TextView
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/space"
         android:textColor="#fff"
         android:background="@drawable/greenbutton"
         android:id="@+id/tvGrandTotal"
         android:gravity="center"
         android:textSize="20dp"
         android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <android.support.v4.widget.Space
+        android:layout_alignParentBottom="true"
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/fabNewOrder"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/fabNewOrder"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </RelativeLayout>
+</RelativeLayout>

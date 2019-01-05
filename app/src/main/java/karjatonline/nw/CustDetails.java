@@ -74,6 +74,20 @@ public class CustDetails extends AppCompatActivity {
         adporderkey=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         adporderkey.setNotifyOnChange(true);
 
+        tvGrandTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),transactions.class);
+                //Toast.makeText(CustDetails.this, ""+position, Toast.LENGTH_SHORT).show();
+                i.putExtra("name",name);
+//                i.putExtra("orderno",""+(position+1));
+//                i.putExtra("orderkey",adporderkey.getItem(position));
+                i.putExtra("custkey",custkey);
+                startActivity(i);
+
+            }
+        });
+
         com.google.firebase.database.Query k=dbRef.child("cust").orderByChild("name").equalTo(name);
         k.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
