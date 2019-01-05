@@ -36,6 +36,7 @@ public class transactions extends AppCompatActivity {
     ListView lvTransaction;
     double total=0;
     ArrayAdapter<String> adpkey;
+    OrderListadapter oladp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,22 +109,30 @@ public class transactions extends AppCompatActivity {
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
-                int i=0;
+                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][2];
+                int i=0,j=0;
                 total=0;
                 adpkey.clear();
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
                     Log.d("logtrans",f.getDate()+" "+f.getAmount());
-                    str[i]=(i+1)+". Date: "+f.getDate()+",  Amount: "+f.getAmount()+"/-";
+//                    str[i]=(i+1)+". Date: "+f.getDate()+",  Amount: "+f.getAmount()+"/-";
+                    str[i][j]=f.getDate();
+                    j++;
+                    str[i][j]=f.getAmount();
+                    j=0;
+
                     i++;
                     //add key to adpkey
                     adpkey.add(data.getKey());
                     total=total+Double.parseDouble(f.getAmount());
                 }
-                ArrayAdapter<String> adp=new ArrayAdapter<>(transactions.this,android.R.layout.simple_list_item_1,str);
-                adp.setNotifyOnChange(true);
-                lvTransaction.setAdapter(adp);
+//                ArrayAdapter<String> adp=new ArrayAdapter<>(transactions.this,android.R.layout.simple_list_item_1,str);
+//                adp.setNotifyOnChange(true);
+                oladp=new OrderListadapter(transactions.this,R.layout.order_list_adapter,str);
+                oladp.setNotifyOnChange(true);
+//                lvTransaction.setAdapter(adp);
+                lvTransaction.setAdapter(oladp);
                 tvTransTotal.setText("Total: "+total+"/-");
             }
 
