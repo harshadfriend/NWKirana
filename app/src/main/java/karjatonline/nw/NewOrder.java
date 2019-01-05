@@ -217,64 +217,69 @@ public class NewOrder extends AppCompatActivity {
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (lvorderitemlist.getChildCount() < 1) {
+                    Toast.makeText(NewOrder.this, "No items to place order !", Toast.LENGTH_SHORT).show();
+                } else
+                {
 
-                new AlertDialog.Builder(NewOrder.this)
-                        .setTitle("Confirm !")
-                        .setMessage("Place the order ?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                fbase f=new fbase();
-                                fbase f2=new fbase();
-                                for(int i=0;i<adpitem.getCount();i++){
-                                    f.setDate(date);
-                                    f.setName(name);
-                                    f.setPrate(adprate.getItem(i));
-                                    f.setItem(adpproduct.getItem(i));
-                                    f.setPquantity(adpqty.getItem(i));
-                                    f.setTotal(adptotal.getItem(i));
-                                    firebase.child("orderdetail").child(custkey).child(orderKey).push().setValue(f);
+                    new AlertDialog.Builder(NewOrder.this)
+                            .setTitle("Confirm !")
+                            .setMessage("Place the order ?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    fbase f = new fbase();
+                                    fbase f2 = new fbase();
+                                    for (int i = 0; i < adpitem.getCount(); i++) {
+                                        f.setDate(date);
+                                        f.setName(name);
+                                        f.setPrate(adprate.getItem(i));
+                                        f.setItem(adpproduct.getItem(i));
+                                        f.setPquantity(adpqty.getItem(i));
+                                        f.setTotal(adptotal.getItem(i));
+                                        firebase.child("orderdetail").child(custkey).child(orderKey).push().setValue(f);
 
-                                }
-                                double total=0;
-                                for(int i=0;i<adptotal.getCount();i++){
-                                    total=total+Double.parseDouble(adptotal.getItem(i));
-                                }
-                                f2.setDate(date);
-                                f2.setName(name);
-                                f2.setOrdertotal(""+total);
+                                    }
+                                    double total = 0;
+                                    for (int i = 0; i < adptotal.getCount(); i++) {
+                                        total = total + Double.parseDouble(adptotal.getItem(i));
+                                    }
+                                    f2.setDate(date);
+                                    f2.setName(name);
+                                    f2.setOrdertotal("" + total);
 //                String orderKey=firebase.push().getKey();
-                                firebase.child("orders").child(custkey).child(orderKey).setValue(f2);
+                                    firebase.child("orders").child(custkey).child(orderKey).setValue(f2);
 
-                                Query q=dbRef.child("product");
-                                q.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        String productkey="";int i=0;
-                                        for(DataSnapshot data:dataSnapshot.getChildren()){
-                                            productkey=data.getKey();
-                                            Map<String, Object> taskMap = new HashMap<String, Object>();
-                                            taskMap.put("pquantity",sQ[i] );
-                                            firebase.child("product").child(productkey).updateChildren(taskMap);
-                                            i++;
+                                    Query q = dbRef.child("product");
+                                    q.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            String productkey = "";
+                                            int i = 0;
+                                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                                productkey = data.getKey();
+                                                Map<String, Object> taskMap = new HashMap<String, Object>();
+                                                taskMap.put("pquantity", sQ[i]);
+                                                firebase.child("product").child(productkey).updateChildren(taskMap);
+                                                i++;
+                                            }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                    }
-                                });
-                                onBackPressed();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    });
+                                    onBackPressed();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                            }
-                        }).show();
-
+                                }
+                            }).show();
+            }
 
             }
         });
