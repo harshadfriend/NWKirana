@@ -60,7 +60,7 @@
         android:layout_below="@id/llTransaction"
         android:layout_above="@id/tvTransTotal"
         android:padding="5dp"
-        android:id="@+id/lvCustDetails"
+        android:id="@+id/lvTransaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -49,7 +49,7 @@ public class AddCustomer extends AppCompatActivity {
                     String custkey=firebase.push().getKey();
 //                    firebase.child("cust").push().setValue(fb);
                     firebase.child("cust").child(custkey).setValue(fb);
-                    firebase.child("transactions").child(custkey).setValue(fb2);
+                  //  firebase.child("transactions").child(custkey).setValue(fb2);
                     //firebase.child("orders").child(etname.getText().toString());
 //                    firebase.child("transactions").child(etname.getText().toString());
 
