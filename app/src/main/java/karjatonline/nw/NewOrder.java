@@ -47,7 +47,7 @@ public class NewOrder extends AppCompatActivity {
     static String[] sP,sR,sQ;
     AutoCompleteTextView actvP1;
     EditText etQ1;
-    TextView tvR1;
+    EditText tvR1;
     TextView tvS1;
     TextView tvT1;
 
