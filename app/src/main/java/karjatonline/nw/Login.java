@@ -20,6 +20,6 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
-        Toast.makeText(this, ""+sharedpreferences.getString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, ""+sharedpreferences.getString("PinKey","no value"), Toast.LENGTH_SHORT).show();
     }
 }
