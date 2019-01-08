@@ -429,6 +429,32 @@ public class NewOrder extends AppCompatActivity {
             }
         });
 
+        tvR1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().length()>0){
+                    btnAddItem.setEnabled(true);
+                    total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
+                    tvT1.setText(""+total);
+                    //fbase f=new fbase();
+
+                }
+                else {
+                    btnAddItem.setEnabled(false);
+                    tvT1.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
        etQ1.addTextChangedListener(new TextWatcher() {
            @Override
            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -443,7 +469,7 @@ public class NewOrder extends AppCompatActivity {
                    btnAddItem.setEnabled(true);
                    total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
                    tvT1.setText(""+total);
-                   fbase f=new fbase();
+                   //fbase f=new fbase();
 
                }
                else {
