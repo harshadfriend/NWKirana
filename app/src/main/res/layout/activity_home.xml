@@ -47,6 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
             <Button
+                android:visibility="gone"
                 android:id="@+id/btnDeleteCust"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/deletehome"
@@ -129,6 +130,7 @@
                 android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/btnDeleteProduct"
+                android:visibility="gone"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/deletehome"
                 android:text="Delete"
