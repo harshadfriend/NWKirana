@@ -2,5 +2,5 @@ package karjatonline.nw;
 
 public class Prefs {
     public static String StoreKey="Store";
-    public static String PinKey="No";
+    public static String  PinKey="0000";
 }
