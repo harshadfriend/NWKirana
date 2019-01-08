@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity {
-    Button btnCustomers,btnAddProduct,btnAddCustomer,btnProducts,btnEditCust,btnEditProduct;
+    Button btnCustomers,btnAddProduct,btnAddCustomer,btnProducts,btnEditCust,btnEditProduct,btnChangePin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,14 @@ public class Home extends AppCompatActivity {
         btnAddProduct=findViewById(R.id.btnAddProduct);
         btnEditCust=findViewById(R.id.btnEditCust);
         btnEditProduct=findViewById(R.id.btnEditProduct);
+        btnChangePin=findViewById(R.id.btnChangePin);
 
-
+        btnChangePin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this,ChangePin.class));
+            }
+        });
         btnAddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

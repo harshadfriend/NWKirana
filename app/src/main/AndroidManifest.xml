@@ -10,9 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".Home">
-
-        </activity>
+        <activity android:name=".Home"></activity>
         <activity android:name=".AddCustomer" />
         <activity android:name=".CustList" />
         <activity android:name=".ProductList" />
@@ -34,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChangePin"></activity>
     </application>
 
 </manifest>
