@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         etCreatePin=findViewById(R.id.etCreatePin);
 
 
-        sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
+        //sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
         //Toast.makeText(this, ""+sharedpreferences.getString(Prefs.PinKey,"no value"), Toast.LENGTH_SHORT).show();
 
         if(sharedpreferences.getString(Prefs.PinKey,"no value").equals("no value")){
@@ -47,11 +47,12 @@ public class Login extends AppCompatActivity {
             btnCreatePin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
                     ed=sharedpreferences.edit();
                     ed.putString(Prefs.PinKey,etCreatePin.getText().toString());
                     ed.apply();
 
-                    Toast.makeText(Login.this, "Success !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Pin created successfully !", Toast.LENGTH_SHORT).show();
                     llCreatePin.setVisibility(View.GONE);
                     llSubmitPin.setVisibility(View.VISIBLE);
 
@@ -66,10 +67,12 @@ public class Login extends AppCompatActivity {
             btnSubmit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
 //                    Toast.makeText(Login.this, ""+sharedpreferences.getString(Prefs.PinKey,"no value"), Toast.LENGTH_SHORT).show();
                     if(etPin.getText().toString().equals(sharedpreferences.getString(Prefs.PinKey,""))){
                         Toast.makeText(Login.this, "Login Successful !", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Login.this,Home.class));
+                        finish();
                     }
                 }
             });

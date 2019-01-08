@@ -18,6 +18,7 @@
 
         <TextView
             android:text="Enter Pin"
+            android:textSize="15dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -25,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp" />
         <EditText
+            android:gravity="center"
             android:id="@+id/etPin"
             android:inputType="numberPassword"
             android:layout_width="match_parent"
@@ -32,6 +34,9 @@
         <Button
             android:id="@+id/btnSubmit"
             android:text="Submit"
+            android:background="@drawable/greenbutton"
+            android:textColor="#FFF"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -45,6 +50,7 @@
 
         <TextView
             android:text="Create Pin"
+            android:textSize="15dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -52,13 +58,17 @@
             android:layout_width="match_parent"
             android:layout_height="5dp" />
         <EditText
+            android:gravity="center"
             android:id="@+id/etCreatePin"
             android:inputType="numberPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/btnCreatePin"
-            android:text="Submit"
+            android:background="@drawable/greenbutton"
+            android:textColor="#FFF"
+            android:textSize="20dp"
+            android:text="Create Pin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
