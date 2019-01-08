@@ -80,6 +80,9 @@ public class Login extends AppCompatActivity {
                     startActivity(new Intent(Login.this,Home.class));
                     finish();
                 }
+                else {
+                    Toast.makeText(Login.this, "Incorrect Pin !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
