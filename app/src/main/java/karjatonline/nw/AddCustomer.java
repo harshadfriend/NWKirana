@@ -21,6 +21,8 @@ public class AddCustomer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customer);
 
+        setTitle("Add Customer");
+
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);
 

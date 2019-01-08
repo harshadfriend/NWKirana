@@ -49,6 +49,8 @@ public class EditCust extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cust);
 
+        setTitle("Edit Customer");
+
         lvCustListDU=findViewById(R.id.lvCustListDU);
 
      //   ll=(LinearLayout)findViewById(R.id.ll);

@@ -36,6 +36,8 @@ public class EditProductDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product_dialog);
 
+        setTitle("Edit Product");
+
         dbRef = FirebaseDatabase.getInstance().getReference();
 
         Firebase.setAndroidContext(this);

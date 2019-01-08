@@ -49,6 +49,8 @@ public class EditProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
 
+        setTitle("Edit Product");
+
         lvProductListDU=findViewById(R.id.lvProductListDU);
 
      //   ll=(LinearLayout)findViewById(R.id.ll);

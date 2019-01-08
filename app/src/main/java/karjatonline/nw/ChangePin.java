@@ -21,6 +21,8 @@ public class ChangePin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_pin);
 
+        setTitle("Change Pin");
+
         etNewPin=findViewById(R.id.etNewPin);
         etOldPin=findViewById(R.id.etOldPin);
 

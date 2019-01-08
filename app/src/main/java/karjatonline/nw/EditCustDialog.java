@@ -34,6 +34,8 @@ public class EditCustDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cust_dialog);
 
+        setTitle("Edit Customer");
+
         dbRef = FirebaseDatabase.getInstance().getReference();
 
         Firebase.setAndroidContext(this);

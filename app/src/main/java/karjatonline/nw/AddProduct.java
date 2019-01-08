@@ -21,6 +21,7 @@ public class AddProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
+        setTitle("Add Product");
 
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);

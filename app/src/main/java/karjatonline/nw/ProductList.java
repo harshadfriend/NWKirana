@@ -51,6 +51,8 @@ public class ProductList extends AppCompatActivity {
 
         lvPList=findViewById(R.id.lvProductList);
 
+        setTitle("Products");
+
 
        /* fabadd=findViewById(R.id.fabAdd);
         fabadd.setOnClickListener(new View.OnClickListener() {
