@@ -437,7 +437,7 @@ public class NewOrder extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().length()>0){
+                if(s.toString().length()>0 && etQ1.getText().toString().length()>0){
                     btnAddItem.setEnabled(true);
                     total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
                     tvT1.setText(""+total);
@@ -465,7 +465,7 @@ public class NewOrder extends AppCompatActivity {
            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             //   Toast.makeText(NewOrder_old.this, "editor", Toast.LENGTH_SHORT).show();
-               if(s.toString().length()>0){
+               if(s.toString().length()>0 && tvR1.getText().toString().length()>0){
                    btnAddItem.setEnabled(true);
                    total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
                    tvT1.setText(""+total);
