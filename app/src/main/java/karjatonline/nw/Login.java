@@ -48,13 +48,18 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
-                    ed=sharedpreferences.edit();
-                    ed.putString(Prefs.PinKey,etCreatePin.getText().toString());
-                    ed.apply();
+                    if(etCreatePin.getText().toString().isEmpty()){
+                        Toast.makeText(Login.this, "Pin cannot be empty !", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        ed = sharedpreferences.edit();
+                        ed.putString(Prefs.PinKey, etCreatePin.getText().toString());
+                        ed.apply();
 
-                    Toast.makeText(Login.this, "Pin created successfully !", Toast.LENGTH_SHORT).show();
-                    llCreatePin.setVisibility(View.GONE);
-                    llSubmitPin.setVisibility(View.VISIBLE);
+                        Toast.makeText(Login.this, "Pin created successfully !", Toast.LENGTH_SHORT).show();
+                        llCreatePin.setVisibility(View.GONE);
+                        llSubmitPin.setVisibility(View.VISIBLE);
+                    }
 
                 }
             });
@@ -63,25 +68,20 @@ public class Login extends AppCompatActivity {
         else {
             llCreatePin.setVisibility(View.GONE);
             llSubmitPin.setVisibility(View.VISIBLE);
-
-            btnSubmit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
-//                    Toast.makeText(Login.this, ""+sharedpreferences.getString(Prefs.PinKey,"no value"), Toast.LENGTH_SHORT).show();
-                    if(etPin.getText().toString().equals(sharedpreferences.getString(Prefs.PinKey,""))){
-                        Toast.makeText(Login.this, "Login Successful !", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Login.this,Home.class));
-                        finish();
-                    }
-                }
-            });
-
         }
 
-
-
-
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
+//                    Toast.makeText(Login.this, ""+sharedpreferences.getString(Prefs.PinKey,"no value"), Toast.LENGTH_SHORT).show();
+                if(etPin.getText().toString().equals(sharedpreferences.getString(Prefs.PinKey,""))){
+                    Toast.makeText(Login.this, "Login Successful !", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Login.this,Home.class));
+                    finish();
+                }
+            }
+        });
 
     }
 }
