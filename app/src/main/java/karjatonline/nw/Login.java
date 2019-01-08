@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         etCreatePin=findViewById(R.id.etCreatePin);
 
 
-        //sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
         //Toast.makeText(this, ""+sharedpreferences.getString(Prefs.PinKey,"no value"), Toast.LENGTH_SHORT).show();
 
         if(sharedpreferences.getString(Prefs.PinKey,"no value").equals("no value")){
@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
             btnCreatePin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
+                    //sharedpreferences = getSharedPreferences(Prefs.StoreKey, Context.MODE_PRIVATE);
                     ed=sharedpreferences.edit();
                     ed.putString(Prefs.PinKey,etCreatePin.getText().toString());
                     ed.apply();
