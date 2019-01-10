@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="karjatonline.nw">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Home"></activity>
+        <activity android:name=".AddCustomer" />
+        <activity android:name=".CustList" />
+        <activity android:name=".ProductList" />
+        <activity android:name=".AddProduct" />
+        <activity android:name=".EditCustDialog" />
+        <activity android:name=".EditCust" />
+        <activity android:name=".EditProductDialog" />
+        <activity android:name=".EditProduct" />
+        <activity android:name=".CustDetails" />
+        <activity android:name=".NewOrder_old" />
+        <activity android:name=".NewOrder" />
+        <activity android:name=".OrderDetails" />
+        <activity android:name=".transactions" />
+        <activity android:name=".NewTransaction" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ChangePin"></activity>
+    </application>
+
+</manifest>
