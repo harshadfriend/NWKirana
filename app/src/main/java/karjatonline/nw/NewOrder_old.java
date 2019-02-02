@@ -28,7 +28,9 @@ import java.util.Calendar;
 
 public class NewOrder_old extends AppCompatActivity {
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
+
     Firebase firebase;
     DatabaseReference dbRef;
 

@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        setTitle("Seema Provision Stores");
+        setTitle("Your Shop Name");
 
         llSubmitPin=findViewById(R.id.llSubmitPin);
         llCreatePin=findViewById(R.id.llCreatePin);

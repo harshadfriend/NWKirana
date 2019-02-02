@@ -14,7 +14,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        setTitle("Seema Provision Stores");
+        setTitle("Your Shop Name");
 
         btnCustomers=findViewById(R.id.btnCustomer);
         btnProducts=findViewById(R.id.btnProducts);

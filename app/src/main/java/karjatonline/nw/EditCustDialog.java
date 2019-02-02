@@ -26,7 +26,9 @@ public class EditCustDialog extends AppCompatActivity {
 
     Firebase firebase;
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
+
     DatabaseReference dbRef;
 
     @Override

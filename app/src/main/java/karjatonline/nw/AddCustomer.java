@@ -13,7 +13,9 @@ import com.firebase.client.Firebase;
 public class AddCustomer extends AppCompatActivity {
     EditText etname,etcity,etmobile;
     Firebase firebase;
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
+
 //    String dburl=this.getString(R.string.url);
 
     @Override

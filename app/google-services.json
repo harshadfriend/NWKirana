@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1067628272775",
-    "firebase_url": "https://nwkirana-3eb2e.firebaseio.com",
-    "project_id": "nwkirana-3eb2e",
-    "storage_bucket": "nwkirana-3eb2e.appspot.com"
+    "project_number": "197736736430",
+    "firebase_url": "https://kiranasample.firebaseio.com",
+    "project_id": "kiranasample",
+    "storage_bucket": "kiranasample.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1067628272775:android:6052256e7a65084b",
+        "mobilesdk_app_id": "1:197736736430:android:6052256e7a65084b",
         "android_client_info": {
           "package_name": "karjatonline.nw"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1067628272775-sj9pu9i5mcmjkq7sl9aber79a6lrpk2q.apps.googleusercontent.com",
+          "client_id": "197736736430-7ss15jgq1n83hrqfj56ne23q5chto4dt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJOnj8zAsDPW9IASGekxs4Ya2n1g5kL_0"
+          "current_key": "AIzaSyCyM3tgB5n2I_kmYNArkgTzrwFCcboUPQE"
         }
       ],
       "services": {

@@ -19,7 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 public class NewTransaction extends AppCompatActivity {
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
+
     Firebase firebase;
     DatabaseReference dbRef;
 

@@ -18,7 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class OrderDetails extends AppCompatActivity {
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
+
     Firebase firebase;
     DatabaseReference dbRef;
 

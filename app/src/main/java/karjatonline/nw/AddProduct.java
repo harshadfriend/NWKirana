@@ -13,7 +13,8 @@ import com.firebase.client.Firebase;
 public class AddProduct extends AppCompatActivity {
     EditText etPname,etPquantity,etPrate;
     Firebase firebase;
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
 //    String dburl=this.getString(R.string.url);
 
     @Override

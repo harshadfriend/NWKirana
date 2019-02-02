@@ -27,7 +27,9 @@ import com.google.firebase.database.Query;
 import java.util.ArrayList;
 
 public class ProductList extends AppCompatActivity {
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kiranasample.firebaseio.com/";
+
     String[] str=new String[10];
     String a,b,c;
     AutoCompleteTextView actv;
