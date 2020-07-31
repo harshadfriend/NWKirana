@@ -4,9 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +25,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class transactions extends AppCompatActivity {
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     Firebase firebase;
     DatabaseReference dbRef;
 

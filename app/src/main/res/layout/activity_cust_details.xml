@@ -159,13 +159,13 @@
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
-    <android.support.v4.widget.Space
+    <View
         android:layout_alignParentBottom="true"
         android:id="@+id/space"
         android:layout_width="match_parent"
         android:layout_height="2dp" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:id="@+id/fabNewOrder"

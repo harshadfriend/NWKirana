@@ -6,9 +6,8 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -31,14 +30,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class NewOrder extends AppCompatActivity {
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     Firebase firebase;
     DatabaseReference dbRef;
 

@@ -3,14 +3,12 @@ package karjatonline.nw;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +29,8 @@ import com.google.firebase.database.Query;
 import java.util.ArrayList;
 
 public class CustList extends AppCompatActivity {
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     String[] str=new String[10];
     String a,b,c;
     AutoCompleteTextView actv;

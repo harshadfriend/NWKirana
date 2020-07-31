@@ -1,7 +1,7 @@
 package karjatonline.nw;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,8 @@ import com.firebase.client.Firebase;
 public class AddCustomer extends AppCompatActivity {
     EditText etname,etcity,etmobile;
     Firebase firebase;
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
 //    String dburl=this.getString(R.string.url);
 
     @Override

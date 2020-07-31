@@ -70,7 +70,7 @@
 
         </LinearLayout>
 
-        <android.support.v4.widget.Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
@@ -85,7 +85,7 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.Space
+    <View
         android:layout_width="match_parent"
         android:layout_height="10dp" />
 
@@ -152,7 +152,7 @@
 
         </LinearLayout>
 
-        <android.support.v4.widget.Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
@@ -211,7 +211,7 @@
 
         </LinearLayout>
 
-        <android.support.v4.widget.Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
@@ -219,7 +219,7 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.Space
+    <View
         android:layout_width="match_parent"
         android:layout_height="10dp" />
 

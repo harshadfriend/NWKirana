@@ -3,7 +3,7 @@ package karjatonline.nw;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 public class NewTransaction extends AppCompatActivity {
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     Firebase firebase;
     DatabaseReference dbRef;
 

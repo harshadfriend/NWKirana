@@ -1,39 +1,37 @@
 {
   "project_info": {
-    "project_number": "1067628272775",
-    "firebase_url": "https://nwkirana-3eb2e.firebaseio.com",
-    "project_id": "nwkirana-3eb2e",
-    "storage_bucket": "nwkirana-3eb2e.appspot.com"
+    "project_number": "4074307844",
+    "firebase_url": "https://kanifnathstore.firebaseio.com",
+    "project_id": "kanifnathstore",
+    "storage_bucket": "kanifnathstore.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1067628272775:android:6052256e7a65084b",
+        "mobilesdk_app_id": "1:4074307844:android:b158c2d6056826ac201051",
         "android_client_info": {
           "package_name": "karjatonline.nw"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1067628272775-sj9pu9i5mcmjkq7sl9aber79a6lrpk2q.apps.googleusercontent.com",
+          "client_id": "4074307844-2nkgkao0hlaptltbf22fb11e62jut5k1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJOnj8zAsDPW9IASGekxs4Ya2n1g5kL_0"
+          "current_key": "AIzaSyCoeuQRlsyAjfzQK-7k_uuPsE1WbnaDvTE"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4074307844-2nkgkao0hlaptltbf22fb11e62jut5k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

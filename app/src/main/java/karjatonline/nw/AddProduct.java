@@ -1,6 +1,6 @@
 package karjatonline.nw;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +13,8 @@ import com.firebase.client.Firebase;
 public class AddProduct extends AppCompatActivity {
     EditText etPname,etPquantity,etPrate;
     Firebase firebase;
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
 //    String dburl=this.getString(R.string.url);
 
     @Override

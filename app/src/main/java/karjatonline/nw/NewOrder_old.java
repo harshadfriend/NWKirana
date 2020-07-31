@@ -3,9 +3,9 @@ package karjatonline.nw;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,7 +28,8 @@ import java.util.Calendar;
 
 public class NewOrder_old extends AppCompatActivity {
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     Firebase firebase;
     DatabaseReference dbRef;
 

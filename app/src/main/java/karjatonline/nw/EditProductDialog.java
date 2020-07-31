@@ -1,7 +1,7 @@
 package karjatonline.nw;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +28,8 @@ public class EditProductDialog extends AppCompatActivity {
 
     Firebase firebase;
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     DatabaseReference dbRef;
 
     @Override

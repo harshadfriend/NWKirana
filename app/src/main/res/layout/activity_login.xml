@@ -23,7 +23,7 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <android.support.v4.widget.Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="5dp" />
         <EditText
@@ -55,7 +55,7 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <android.support.v4.widget.Space
+        <View
             android:layout_width="match_parent"
             android:layout_height="5dp" />
         <EditText

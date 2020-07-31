@@ -3,9 +3,9 @@ package karjatonline.nw;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -30,7 +30,8 @@ import java.util.ArrayList;
 
 public class EditCust extends AppCompatActivity {
 
-    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+//    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
+    String dburl="https://kanifnathstore.firebaseio.com/";
     String[] str=new String[10];
     String a,b,c;
     AutoCompleteTextView actvDU;
