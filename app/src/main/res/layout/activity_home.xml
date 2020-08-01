@@ -8,11 +8,13 @@
     tools:context=".Home">
 
     <LinearLayout
-        android:background="@drawable/border2"
+        android:background="@drawable/back_plain_white_round"
+        android:elevation="4dp"
+        android:layout_margin="5dp"
         android:orientation="vertical"
-        android:padding="1dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:targetApi="lollipop">
 
         <TextView
             android:text="Customer"
@@ -22,7 +24,8 @@
             android:textSize="20sp"
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
         <LinearLayout
             android:padding="5dp"
             android:orientation="horizontal"
@@ -37,7 +40,8 @@
                 android:drawableTop="@drawable/add"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
             <Button
                 android:id="@+id/btnEditCust"
                 android:background="@android:color/transparent"
@@ -46,7 +50,8 @@
                 android:textColor="#00a"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
             <Button
                 android:visibility="gone"
                 android:id="@+id/btnDeleteCust"
@@ -56,7 +61,8 @@
                 android:textColor="#a00"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
             <Button
                 android:id="@+id/btnCustomer"
@@ -66,7 +72,8 @@
                 android:textColor="#2bbafc"
                 android:text="Orders"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
         </LinearLayout>
 
@@ -78,7 +85,8 @@
             android:padding="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf">
 
 
         </LinearLayout>
@@ -90,11 +98,13 @@
         android:layout_height="10dp" />
 
     <LinearLayout
-        android:background="@drawable/border2"
+        android:background="@drawable/back_plain_white_round"
         android:orientation="vertical"
-        android:padding="1dp"
+        android:layout_margin="5dp"
+        android:elevation="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:targetApi="lollipop">
 
         <TextView
             android:text="Products"
@@ -104,7 +114,8 @@
             android:textSize="20sp"
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
         <LinearLayout
             android:padding="5dp"
             android:orientation="horizontal"
@@ -119,7 +130,8 @@
                 android:drawableTop="@drawable/add"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
             <Button
                 android:id="@+id/btnEditProduct"
                 android:background="@android:color/transparent"
@@ -128,7 +140,8 @@
                 android:textColor="#00a"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
             <Button
                 android:id="@+id/btnDeleteProduct"
                 android:visibility="gone"
@@ -138,7 +151,8 @@
                 android:textColor="#a00"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
             <Button
                 android:id="@+id/btnProducts"
@@ -148,7 +162,8 @@
                 android:textColor="#2bbafc"
                 android:text="Products"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
         </LinearLayout>
 
@@ -160,7 +175,8 @@
             android:padding="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UselessLeaf">
 
 
         </LinearLayout>
@@ -183,7 +199,8 @@
             android:textSize="20sp"
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
         <LinearLayout
             android:padding="5dp"
             android:orientation="horizontal"
@@ -198,7 +215,8 @@
                 android:drawableTop="@drawable/add"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
             <Button
                 android:id="@+id/btnEditS"
                 android:background="@android:color/transparent"
@@ -207,7 +225,8 @@
                 android:textColor="#00a"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ButtonStyle,HardcodedText" />
 
         </LinearLayout>
 
@@ -224,6 +243,8 @@
         android:layout_height="10dp" />
 
     <Button
+        android:layout_margin="5dp"
+        android:elevation="4dp"
         android:text="Change Pin"
         android:textSize="20sp"
         android:drawableLeft="@mipmap/key"
@@ -231,7 +252,10 @@
         android:id="@+id/btnChangePin"
         android:background="#d55"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText"
+        android:drawableStart="@mipmap/key"
+        tools:targetApi="lollipop" />
     <!--  <LinearLayout
           android:background="@drawable/border"
           android:orientation="vertical"

@@ -1,5 +1,6 @@
 package karjatonline.nw;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -45,6 +46,7 @@ public class EditCust extends AppCompatActivity {
     LinearLayout ll;
     ListView lvCustListDU;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +135,7 @@ public class EditCust extends AppCompatActivity {
         actvDU.setFocusable(false);
         actvDU.setOnTouchListener(new View.OnTouchListener() {
 
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Log.d("logd","ll");

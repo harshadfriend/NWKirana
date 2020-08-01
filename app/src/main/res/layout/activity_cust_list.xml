@@ -33,11 +33,14 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+
             android:id="@+id/fabAddCust"
             android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_add"
+
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_alignParentEnd="true" />
 
 
 

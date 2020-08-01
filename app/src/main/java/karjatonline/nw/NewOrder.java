@@ -1,5 +1,6 @@
 package karjatonline.nw;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -124,7 +125,10 @@ public class NewOrder extends AppCompatActivity {
         lvorderitemlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int qt = Integer.parseInt(sQ[Integer.parseInt(adpindex.getItem(position))]) + Integer.parseInt(adpqty.getItem(position));
+//                int qt = Integer.parseInt(sQ[Integer.parseInt(adpindex.getItem(position))]) + Integer.parseInt(adpqty.getItem(position));
+//                sQ[Integer.parseInt(adpindex.getItem(position))]=String.valueOf(qt);
+
+                double qt = Double.parseDouble(sQ[Integer.parseInt(adpindex.getItem(position))]) + Double.parseDouble(adpqty.getItem(position));
                 sQ[Integer.parseInt(adpindex.getItem(position))]=String.valueOf(qt);
 
                 adpproduct.remove(adpproduct.getItem(position));
@@ -287,7 +291,7 @@ public class NewOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Integer.parseInt(etQ1.getText().toString())<=Integer.parseInt(sQ[temp])) {
+                if(Double.parseDouble(etQ1.getText().toString())<=Double.parseDouble(sQ[temp])) {
 
                     adpitem.add("Q:" + etQ1.getText().toString() + "\t\t" + actvP1.getText().toString() + "\t\tRs." + tvT1.getText().toString());
                     adpproduct.add(actvP1.getText().toString());
@@ -296,7 +300,8 @@ public class NewOrder extends AppCompatActivity {
                     adprate.add(tvR1.getText().toString());
                     adpindex.add(""+temp);
 
-                    int qt = Integer.parseInt(sQ[temp]) - Integer.parseInt(etQ1.getText().toString());
+//                    int qt = Integer.parseInt(sQ[temp]) - Integer.parseInt(etQ1.getText().toString());
+                    double qt = Double.parseDouble(sQ[temp]) - Double.parseDouble(etQ1.getText().toString());
                     sQ[temp] = "" + qt;
                     etQ1.setText("1");
                     tvR1.setText("");
@@ -460,13 +465,18 @@ public class NewOrder extends AppCompatActivity {
 
            }
 
+           @SuppressLint("SetTextI18n")
            @Override
            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             //   Toast.makeText(NewOrder_old.this, "editor", Toast.LENGTH_SHORT).show();
                if(s.toString().length()>0 && tvR1.getText().toString().length()>0){
                    btnAddItem.setEnabled(true);
-                   total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
+                   String str=s.toString();
+//                   total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(etQ1.getText().toString());
+                   if(str.charAt(0)=='.')
+                       str="0"+str;
+                   total=Double.parseDouble(tvR1.getText().toString())*Double.parseDouble(str);
                    tvT1.setText(""+total);
                    //fbase f=new fbase();
 
