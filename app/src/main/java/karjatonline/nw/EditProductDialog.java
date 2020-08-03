@@ -85,16 +85,16 @@ public class EditProductDialog extends AppCompatActivity {
         btnEUDsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etEUDname.getText().toString().isEmpty()) etEUDname.setError("Name cannot be empty");
-                if(etEUDrate.getText().toString().isEmpty()) etEUDrate.setError("City cannot be empty");
+                if(etEUDname.getText().toString().isEmpty()) etEUDname.setError("Product name cannot be empty");
+                if(etEUDrate.getText().toString().isEmpty()) etEUDrate.setError("Rate cannot be empty");
                 if(etQuantity.getText().toString().isEmpty()) etQuantity.setText("0");
 //                if(etEUDphone.getText().toString().isEmpty()) etEUDphone.setError("Phone cannot be empty");
 
                 if(!etEUDname.getText().toString().isEmpty() && !etEUDrate.getText().toString().isEmpty()){// &&
 //                        !etEUDphone.getText().toString().isEmpty()) {
 
-                    int q=Integer.parseInt(tvQuantity.getText().toString());
-                    q=q+Integer.parseInt(etQuantity.getText().toString());
+                    double q=Double.parseDouble(tvQuantity.getText().toString());
+                    q=q+Double.parseDouble(etQuantity.getText().toString());
 
                     Map<String, Object> taskMap = new HashMap<String, Object>();
 //                    taskMap.put("pname", etEUDname.getText().toString().toUpperCase());

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -14,17 +13,21 @@
         <TextView
             android:text="Name"
             android:padding="2dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:layout_weight="4"
             android:id="@+id/etEUDname"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -33,20 +36,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:padding="2dp"
             android:gravity="center_vertical"
             android:text="Rate"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:layout_weight="4"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:id="@+id/etEUDrate"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
     <LinearLayout
@@ -54,18 +60,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center_vertical"
             android:text="Stock"
             android:padding="2dp"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/tvQuantity"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:enabled="false"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -73,17 +80,20 @@
             android:text="+"
             android:gravity="center"
             android:layout_weight="1"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:enabled="false"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:layout_weight="1"
             android:id="@+id/etQuantity"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -94,7 +104,8 @@
         android:id="@+id/btnEUDsave"
         android:text="Save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText" />
 
 
 </LinearLayout>
