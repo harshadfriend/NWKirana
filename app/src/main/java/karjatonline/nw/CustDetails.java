@@ -24,7 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 public class CustDetails extends AppCompatActivity {
 
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+String dburl;
     Firebase firebase;
     DatabaseReference dbRef;
 
@@ -43,7 +44,7 @@ public class CustDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_details);
 
-
+        dburl=getResources().getString(R.string.url_swara);
 
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);

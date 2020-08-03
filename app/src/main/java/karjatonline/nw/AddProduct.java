@@ -14,13 +14,15 @@ public class AddProduct extends AppCompatActivity {
     EditText etPname,etPquantity,etPrate;
     Firebase firebase;
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
-//    String dburl=this.getString(R.string.url);
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+    String dburl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+
+        dburl=getResources().getString(R.string.url_swara);
 
         setTitle("Add Product");
 

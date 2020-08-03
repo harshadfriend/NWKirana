@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">M.P. Bazaar</string>
-    <string name="url">https://nwkirana-3eb2e.firebaseio.com/</string>
+<!--    <string name="app_name">M.P. Bazaar</string>-->
+    <string name="app_name">Swara Traders</string>
+    <string name="url_wani">https://nwkirana-3eb2e.firebaseio.com/</string>
+    <string name="url_mpbazaar">https://kanifnathstore.firebaseio.com/</string>
+    <string name="url_swara">https://swara-traders.firebaseio.com/</string>
+    <string name="swara">Swara Traders</string>
 </resources>

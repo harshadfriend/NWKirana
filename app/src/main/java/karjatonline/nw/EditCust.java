@@ -32,7 +32,8 @@ import java.util.ArrayList;
 public class EditCust extends AppCompatActivity {
 
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+String dburl;
     String[] str=new String[10];
     String a,b,c;
     AutoCompleteTextView actvDU;
@@ -51,6 +52,8 @@ public class EditCust extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cust);
+
+        dburl=getResources().getString(R.string.url_swara);
 
         setTitle("Edit Customer");
 

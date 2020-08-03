@@ -23,7 +23,8 @@ import java.util.ArrayList;
 
 public class ProductList extends AppCompatActivity {
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+String dburl;
     String[] str=new String[10];
     String a,b,c;
     AutoCompleteTextView actv;
@@ -44,6 +45,8 @@ public class ProductList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+
+        dburl=getResources().getString(R.string.url_swara);
 
         lvPList=findViewById(R.id.lvProductList);
 

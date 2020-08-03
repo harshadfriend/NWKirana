@@ -14,7 +14,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        setTitle("Chaitanya Kanifnath Kirana Stores");
+//        setTitle("Chaitanya Kanifnath Kirana Stores");
+        setTitle(getResources().getString(R.string.swara));
 
         btnCustomers=findViewById(R.id.btnCustomer);
         btnProducts=findViewById(R.id.btnProducts);

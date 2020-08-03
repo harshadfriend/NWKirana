@@ -14,13 +14,15 @@ public class AddCustomer extends AppCompatActivity {
     EditText etname,etcity,etmobile;
     Firebase firebase;
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
-//    String dburl=this.getString(R.string.url);
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+    String dburl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_customer);
+
+        dburl=getResources().getString(R.string.url_swara);
 
         setTitle("Add Customer");
 

@@ -27,13 +27,16 @@ public class EditCustDialog extends AppCompatActivity {
     Firebase firebase;
 
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+String dburl;
     DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cust_dialog);
+
+        dburl=getResources().getString(R.string.url_swara);
 
         setTitle("Edit Customer");
 

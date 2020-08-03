@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/launcher_logo"
+        android:icon="@drawable/swara_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/launcher_logo"
+        android:roundIcon="@drawable/swara_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">

@@ -20,7 +20,8 @@ import java.util.Calendar;
 
 public class NewTransaction extends AppCompatActivity {
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
-    String dburl="https://kanifnathstore.firebaseio.com/";
+//    String dburl="https://kanifnathstore.firebaseio.com/";
+String dburl;
     Firebase firebase;
     DatabaseReference dbRef;
 
@@ -36,6 +37,8 @@ public class NewTransaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_transaction);
+
+        dburl=getResources().getString(R.string.url_swara);
 
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);
