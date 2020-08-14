@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "934580113676",
+    "firebase_url": "https://swara-traders.firebaseio.com",
+    "project_id": "swara-traders",
+    "storage_bucket": "swara-traders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934580113676:android:ec914eb0b622dba2d83929",
+        "android_client_info": {
+          "package_name": "karjatonline.nw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934580113676-06ijkmqchjqv9bargfa83lsdqd4mhhh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMJHrj4AiujIsOspkcjQ1mRQ6BH7kAkaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934580113676-06ijkmqchjqv9bargfa83lsdqd4mhhh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

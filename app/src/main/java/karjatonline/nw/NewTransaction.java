@@ -47,8 +47,11 @@ String dburl;
         setTitle("New Transaction");
 
         Bundle extras=getIntent().getExtras();
-        name=extras.getString("name");
-        custkey=extras.getString("custkey");
+        if (extras != null) {
+            name=extras.getString("name");
+            custkey=extras.getString("custkey");
+        }
+
         // Toast.makeText(this, ""+name+"\n"+custkey, Toast.LENGTH_SHORT).show();
 
         tvName=findViewById(R.id.tvnameNewTrans);
@@ -70,12 +73,16 @@ String dburl;
         btnCredit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fbase f=new fbase();
-                f.setAmount(etAmount.getText().toString());
-                f.setDate(tvDate.getText().toString());
-                firebase.child("transactions").child(custkey).push().setValue(f);
-                Toast.makeText(NewTransaction.this, "Success !", Toast.LENGTH_SHORT).show();
-                onBackPressed();
+                if(!etAmount.getText().toString().isEmpty()){
+                    fbase f=new fbase();
+                    f.setAmount(etAmount.getText().toString());
+                    f.setDate(tvDate.getText().toString());
+                    firebase.child("transactions").child(custkey).push().setValue(f);
+                    Toast.makeText(NewTransaction.this, "Success !", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                }
+                else
+                    Toast.makeText(NewTransaction.this, "Enter valid amount !", Toast.LENGTH_SHORT).show();
             }
         });
 

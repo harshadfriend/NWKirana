@@ -1,5 +1,6 @@
 package karjatonline.nw;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import androidx.annotation.NonNull;
@@ -122,12 +123,13 @@ String dburl;
         //balance total
         Query b=dbRef.child("transactions").child(custkey);
         b.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 transtotal=0;balance=0;
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
-                    Log.d("logtrans",f.getDate()+" "+f.getAmount());
+                    Log.e("logtrans",f.getDate()+" "+f.getAmount());
                     transtotal=transtotal+Double.parseDouble(f.getAmount());
                 }
                 balance=grandTotal-transtotal;

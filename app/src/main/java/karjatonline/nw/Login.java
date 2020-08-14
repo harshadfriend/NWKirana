@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 //        setTitle("Chaitanya Kanifnath Kirana Stores");
-        setTitle(getResources().getString(R.string.swara));
+        setTitle(getResources().getString(R.string.app_name));
 
         llSubmitPin=findViewById(R.id.llSubmitPin);
         llCreatePin=findViewById(R.id.llCreatePin);
