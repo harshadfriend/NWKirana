@@ -51,7 +51,7 @@ String dburl;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_list);
 
-        dburl=getResources().getString(R.string.url_swara);
+        dburl=getResources().getString(R.string.url);
 
         setTitle("Customers");
 

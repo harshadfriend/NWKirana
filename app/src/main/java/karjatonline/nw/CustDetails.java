@@ -44,7 +44,7 @@ String dburl;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_details);
 
-        dburl=getResources().getString(R.string.url_swara);
+        dburl=getResources().getString(R.string.url);
 
         Firebase.setAndroidContext(this);
         firebase=new Firebase(dburl);

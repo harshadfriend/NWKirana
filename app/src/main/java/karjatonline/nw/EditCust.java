@@ -53,7 +53,7 @@ String dburl;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cust);
 
-        dburl=getResources().getString(R.string.url_swara);
+        dburl=getResources().getString(R.string.url);
 
         setTitle("Edit Customer");
 

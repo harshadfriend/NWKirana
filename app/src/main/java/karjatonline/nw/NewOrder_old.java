@@ -60,7 +60,7 @@ String dburl;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order_old);
 
-        dburl=getResources().getString(R.string.url_swara);
+        dburl=getResources().getString(R.string.url);
 
         setTitle("New Order");
 

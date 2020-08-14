@@ -76,7 +76,7 @@ String dburl;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_order);
 
-        dburl=getResources().getString(R.string.url_swara);
+        dburl=getResources().getString(R.string.url);
 
         s=new String[5];
 

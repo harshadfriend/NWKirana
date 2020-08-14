@@ -46,7 +46,7 @@ String dburl;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        dburl=getResources().getString(R.string.url_swara);
+        dburl=getResources().getString(R.string.url);
 
         lvPList=findViewById(R.id.lvProductList);
 
