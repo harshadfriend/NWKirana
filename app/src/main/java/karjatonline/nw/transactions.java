@@ -1,5 +1,6 @@
 package karjatonline.nw;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 public class transactions extends AppCompatActivity {
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
 //    String dburl="https://kanifnathstore.firebaseio.com/";
-String dburl;
+    String dburl;
     Firebase firebase;
     DatabaseReference dbRef;
 
@@ -38,7 +39,7 @@ String dburl;
     ListView lvTransaction;
     double total=0;
     ArrayAdapter<String> adpkey;
-    OrderListadapter oladp;
+    transactionListAdapter oladp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,22 +89,22 @@ String dburl;
         lvTransaction.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final int pos=position;
-                new AlertDialog.Builder(transactions.this).setTitle("Delete ?")
-                        .setMessage("Delete selected transaction ?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                firebase.child("transactions").child(custkey).child(adpkey.getItem(pos)).removeValue();
-                                Toast.makeText(transactions.this, "Successfully deleted !", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        }).show();
+//                final int pos=position;
+//                new AlertDialog.Builder(transactions.this).setTitle("Delete ?")
+//                        .setMessage("Delete selected transaction ?")
+//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                firebase.child("transactions").child(custkey).child(adpkey.getItem(pos)).removeValue();
+//                                Toast.makeText(transactions.this, "Successfully deleted !", Toast.LENGTH_SHORT).show();
+//                            }
+//                        })
+//                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//
+//                            }
+//                        }).show();
 
             }
         });
@@ -111,19 +112,24 @@ String dburl;
 
         Query q=dbRef.child("transactions").child(custkey);
         q.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][2];
+                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][4];
                 int i=0,j=0;
                 total=0;
                 adpkey.clear();
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     fbase f=data.getValue(fbase.class);
-                    Log.d("logtrans",f.getDate()+" "+f.getAmount());
+                    Log.e("logtrans",f.getDate()+" "+f.getAmount()+" "+data.getKey()+" "+f.gettkey());
 //                    str[i]=(i+1)+". Date: "+f.getDate()+",  Amount: "+f.getAmount()+"/-";
                     str[i][j]=f.getDate();
                     j++;
                     str[i][j]=f.getAmount();
+                    j++;
+                    str[i][j]=data.getKey();
+                    j++;
+                    str[i][j]=custkey;
                     j=0;
 
                     i++;
@@ -133,7 +139,7 @@ String dburl;
                 }
 //                ArrayAdapter<String> adp=new ArrayAdapter<>(transactions.this,android.R.layout.simple_list_item_1,str);
 //                adp.setNotifyOnChange(true);
-                oladp=new OrderListadapter(transactions.this,R.layout.order_list_adapter,str);
+                oladp=new transactionListAdapter(transactions.this,R.layout.order_list_adapter,str);
                 oladp.setNotifyOnChange(true);
 //                lvTransaction.setAdapter(adp);
                 lvTransaction.setAdapter(oladp);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:padding="2dp"
     android:layout_width="match_parent"
@@ -18,7 +19,8 @@
         android:gravity="center|left"
         android:layout_weight="4"
         android:layout_width="0dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:ignore="RtlHardcoded" />
     <TextView
         android:textColor="#000"
         android:id="@+id/tvNODArtNqt"
@@ -33,7 +35,8 @@
         android:gravity="center"
         android:text="="
         android:layout_width="0dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:ignore="HardcodedText" />
     <TextView
         android:textColor="#000"
         android:id="@+id/tvNODAtotal"
@@ -44,9 +47,10 @@
     <TextView
         android:id="@+id/tvNODADeleteItem"
         android:layout_weight="1"
-        android:drawableRight="@drawable/delete"
+        android:drawableRight="@drawable/delete_small"
         android:gravity="center"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/delete_small" />
 
 </LinearLayout>

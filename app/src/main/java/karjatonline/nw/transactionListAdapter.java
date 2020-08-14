@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by Dell on 09-Mar-18.
  */
 
-public class OrderListadapter extends ArrayAdapter{
+public class transactionListAdapter extends ArrayAdapter{
     Context context;
     int layoutResourceId;
     String[][] data=null;
@@ -34,7 +34,7 @@ public class OrderListadapter extends ArrayAdapter{
 
     //List<string_item> data=null;
 
-    public OrderListadapter(Context context, int resource, String[][] objects) {
+    public transactionListAdapter(Context context, int resource, String[][] objects) {
         //public myadapter(Context context, int resource, List<string_item> objects) {
 //        super(context, resource, objects);
         super(context,resource,objects);
@@ -96,12 +96,11 @@ public class OrderListadapter extends ArrayAdapter{
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(context).setTitle("Delete ?")
-                        .setMessage("Delete selected Order ?")
+                        .setMessage("Delete selected transaction ?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                firebase.child("orders").child(data[position][2]).child(data[position][3]).removeValue();
-                                firebase.child("orderdetail").child(data[position][2]).child(data[position][3]).removeValue();
+                                firebase.child("transactions").child(data[position][3]).child(data[position][2]).removeValue();
                                 Toast.makeText(context, "Successfully deleted !", Toast.LENGTH_SHORT).show();
                             }
                         })

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+//this is customer's orders page
 public class CustDetails extends AppCompatActivity {
 
 //    String dburl="https://nwkirana-3eb2e.firebaseio.com/";
 //    String dburl="https://kanifnathstore.firebaseio.com/";
-String dburl;
+    String dburl;
     Firebase firebase;
     DatabaseReference dbRef;
 
@@ -91,7 +93,6 @@ String dburl;
             }
         });
 
-
         com.google.firebase.database.Query k=dbRef.child("cust").orderByChild("name").equalTo(name);
         k.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
@@ -111,11 +112,6 @@ String dburl;
 
             }
         });
-
-
-
-
-
     }
 
     public void fn(){
@@ -135,7 +131,6 @@ String dburl;
                 balance=grandTotal-transtotal;
                 tvGrandTotal.setText("Balance:  "+balance+"/-Rs.");
                 tvNameorder.setText("Total:"+grandTotal+"/- , Credit:"+transtotal+"/-");
-
             }
 
             @Override
@@ -144,16 +139,16 @@ String dburl;
             }
         });
 
-
         //get order details
         Query q=dbRef.child("orders").child(custkey);
         q.addValueEventListener(new ValueEventListener() {
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 grandTotal=0;balance=0;
 //                String[] str=new String[(int)dataSnapshot.getChildrenCount()];
-                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][3];
+                String[][] str=new String[(int)dataSnapshot.getChildrenCount()][4];
                 int i=0,j=0;
                 adporderkey.clear();
                 for(DataSnapshot data:dataSnapshot.getChildren()){
@@ -166,6 +161,10 @@ String dburl;
                     str[i][j]=f.getDate();
                     j++;
                     str[i][j]=f.getOrdertotal();
+                    j++;
+                    str[i][j]=custkey;
+                    j++;
+                    str[i][j]=data.getKey();
                     j=0;
 
                     //grand total of all order amounts
@@ -185,7 +184,6 @@ String dburl;
                 oladp=new OrderListadapter(CustDetails.this,R.layout.order_list_adapter,str);
                 oladp.setNotifyOnChange(true);
                 lvCustDetails.setAdapter(oladp);
-
 
             }
 

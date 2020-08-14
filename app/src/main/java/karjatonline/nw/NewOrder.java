@@ -127,32 +127,43 @@ String dburl;
 
         lvorderitemlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                int qt = Integer.parseInt(sQ[Integer.parseInt(adpindex.getItem(position))]) + Integer.parseInt(adpqty.getItem(position));
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                new AlertDialog.Builder(NewOrder.this)
+                        .setTitle("Delete ?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage("Delete item ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i2) {
+                                //                int qt = Integer.parseInt(sQ[Integer.parseInt(adpindex.getItem(position))]) + Integer.parseInt(adpqty.getItem(position));
 //                sQ[Integer.parseInt(adpindex.getItem(position))]=String.valueOf(qt);
 
-                double qt = Double.parseDouble(sQ[Integer.parseInt(adpindex.getItem(position))]) + Double.parseDouble(adpqty.getItem(position));
-                sQ[Integer.parseInt(adpindex.getItem(position))]=String.valueOf(qt);
+                                double qt = Double.parseDouble(sQ[Integer.parseInt(adpindex.getItem(position))]) + Double.parseDouble(adpqty.getItem(position));
+                                sQ[Integer.parseInt(adpindex.getItem(position))]=String.valueOf(qt);
 
-                adpproduct.remove(adpproduct.getItem(position));
-                adpqty.remove(adpqty.getItem(position));
-                adptotal.remove(adptotal.getItem(position));
-                adprate.remove(adprate.getItem(position));
-                adpindex.remove(adpindex.getItem(position));
-                adpitem.remove(adpitem.getItem(position));
+                                adpproduct.remove(adpproduct.getItem(position));
+                                adpqty.remove(adpqty.getItem(position));
+                                adptotal.remove(adptotal.getItem(position));
+                                adprate.remove(adprate.getItem(position));
+                                adpindex.remove(adpindex.getItem(position));
+                                adpitem.remove(adpitem.getItem(position));
 
-                String[][] str=new String[adpitem.getCount()][5];
-                for(int i=0;i<adpitem.getCount();i++){
-                    str[i][0]=adpproduct.getItem(i);
-                    str[i][1]=adprate.getItem(i);
-                    str[i][2]=adpqty.getItem(i);
-                    str[i][3]=adptotal.getItem(i);
-                    str[i][4]=adpindex.getItem(i);
-                }
+                                String[][] str=new String[adpitem.getCount()][5];
+                                for(int i=0;i<adpitem.getCount();i++){
+                                    str[i][0]=adpproduct.getItem(i);
+                                    str[i][1]=adprate.getItem(i);
+                                    str[i][2]=adpqty.getItem(i);
+                                    str[i][3]=adptotal.getItem(i);
+                                    str[i][4]=adpindex.getItem(i);
+                                }
 
-                noadp=new NewOrderListadapter(NewOrder.this,R.layout.neworder_list_adapter,str);
-                noadp.setNotifyOnChange(true);
-                lvorderitemlist.setAdapter(noadp);
+                                noadp=new NewOrderListadapter(NewOrder.this,R.layout.neworder_list_adapter,str);
+                                noadp.setNotifyOnChange(true);
+                                lvorderitemlist.setAdapter(noadp);
+                            }
+                        })
+                        .setNegativeButton("No",null)
+                        .show();
             }
 
         });

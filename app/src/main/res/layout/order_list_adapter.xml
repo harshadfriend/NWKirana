@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:padding="2dp"
     android:layout_width="match_parent"
     android:layout_height="50dp">
@@ -8,7 +11,7 @@
     <TextView
         android:id="@+id/tvOLASrNo"
         android:gravity="center"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
@@ -16,26 +19,37 @@
     <TextView
         android:id="@+id/tvOLAdate"
         android:gravity="center"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
     <TextView
         android:id="@+id/tvOLAtotal"
-        android:textSize="20dp"
-        android:text="dddd"
+        android:textSize="16sp"
         android:gravity="center_vertical|end"
         android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
     <TextView
         android:visibility="gone"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:id="@+id/tvOLApaidstatus"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent" />
+    <LinearLayout
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/deletehome"
+            android:id="@+id/ivDelete"
+            android:layout_width="25sp"
+            android:layout_height="25dp"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
 
 
 </LinearLayout>
